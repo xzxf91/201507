@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //关于this的查找问题
+    //1、Fn这个类中this.xxx=xxx中的this是当前Fn的一个实例
+    //2、Fn类中某些方法中的this(例如:sum这个公共方法中的this)
+    //1)首先看sum这个方法执行前有没".","."前面是谁,那么sum中的this就是谁
+    //2)执行sum中的代码,然后把this是谁用代码给描述出来
+    //3)按照原型的查找机制分析结果即可
+    function Fn() {
+        //this-->f
+        this.index = 100;
+    }
+    Fn.prototype.sum = function () {
+        console.log(this.index);
+    };
+    var f = new Fn;
+    f.sum();//this->f
+    // console.log(f.index);  -->100
+
+    f.__proto__.sum();//this->f.__proto__
+    // console.log(f.__proto__.index);  -->原型上没有index属性，则往上一级查找，直到找到Object的原型为止 -->undefined
+
+    Fn.prototype.sum();//this->Fn.prototype
+    // console.log(Fn.prototype.index); 和上面的情况一样，是直接的查找原型上的index  -->undefined
+
+    //f.__proto__.__proto__.sum();//Uncaught TypeError: f.__proto__.__proto__.sum is not a function
+</script>
+</body>
+</html>

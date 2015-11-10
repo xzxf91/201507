@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <link type="text/css" rel="stylesheet" href="css/tab.css"/>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="select">综艺</li>
+        <li>电影</li>
+        <li>电视剧</li>
+    </ul>
+    <div class="select">中国好声音第四季-腾讯独家播放</div>
+    <div>小黄人广受大家好评</div>
+    <div>骨头、小骨、小不点、杀阡陌</div>
+</div>
+<script type="text/javascript">
+    //选项卡实现的思想：当我鼠标滑到某一个li的时候，我首先让所有的li和对应的div都没有"select"这个选中的样式，然后在让当前点击的这个li和对应的div有选中的"select"样式
+
+    //1、想要操作哪些元素就先获取这些元素
+    var oTab = document.getElementById("tab");
+    var oLis = oTab.getElementsByTagName("li");
+    var oDivs = oTab.getElementsByTagName("div");
+
+    //2、实现选项卡的功能
+    function tabChange(n) {
+        //1)首先让所有的li和div都没有选中的样式
+        for (var i = 0; i < oLis.length; i++) {
+            oLis[i].className = null;
+            oDivs[i].className = null;
+        }
+        //2)让当前选中的这个li和对应的div有选中的样式
+        //此时我们还不知道点击的是哪一个呢，需要定义个入口，当执行的时候告诉我即可-->形参
+        //我设置一个形参n，自己规定它的意思是：当前点击的这个li对应的索引
+//        oLis[n].className = "select";
+//        oDivs[n].className = "select";
+        oLis[n].className = oDivs[n].className = "select";
+    }
+
+    //3、给每一个li绑定鼠标滑过事件
+    //    oLis[0].onmouseover = function () {
+    //        tabChange(0);
+    //    };
+    //    oLis[1].onmouseover = function () {
+    //        tabChange(1);
+    //    };
+    //    oLis[2].onmouseover = function () {
+    //        tabChange(2);
+    //    };
+
+    //自定义属性实现的原理：在绑定事件之前，我们分别给每一个li都增加一个自己定义的属性zhuFeng，让其属性值是自己的索引，当执行的tabChange的时候，在到自己的属性中获取这个值拿来用即可
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].zhuFeng = i;
+        oLis[i].onmouseover = function () {
+            tabChange(this.zhuFeng);//要传递索引，但是还不能使用i-->自定义属性  this代表的是当前操作的那个li
+        }
+    }
+    /*
+     i=0 第一次循环
+     oLis[0].onmouseover = function () {//开始我只是把函数的定义部分赋值给我们的事件，只有当我们触发相关操作的时候才会执行这个方法
+     //当前这是函数的定义部分，里面存储的是字符串，我们看到的i不是变量而是一个字符
+     "tabChange(i);"
+     }
+     i=1 第二次循环
+     oLis[1].onmouseover = function (){
+     "tabChange(i);"
+     }
+     i=2 第三次循环
+     oLis[2].onmouseover = function (){
+     "tabChange(i);"
+     }
+     i=3 循环结束，此时i已经变为3了
+
+     当我们手动滑过第二个li的时候，执行第二次循环绑定的那个方法function (){"tabChange(i);"} 让"tabChange(i);"变为代码执行 tabChange(i);，此时的变量i的值是3
+     */
+
+
+</script>
+</body>
+</html>

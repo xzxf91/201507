@@ -1,0 +1,54 @@
+JS中检测数据类型只有四种方式
+1、typeof 用来检测数据类型的运算符
+  [typeof value]
+  1)返回值:首先是一个字符串,然后包含了我们常用的数据类型,例如:"number"、"string"、"boolean"、"undefined"、"object"、"function"
+    typeof typeof typeof [12] -> "string"
+  2)typeof null ->"object" 因为null是一个空对象指针
+  3)typeof不能具体的细分对象、数组、正则等,因为不管检测哪一个返回的都是"object"
+
+2、instanceof / constructor
+  1)instanceof:检测当前实例是否属于某一个类,属于的话返回true,不属于返回false
+    var ary=[];
+    ary instanceof Array ->true
+    ary instanceof RegExp ->false
+    ary instanceof Object ->true 所有的对象都是Object这个基类的一个实例
+
+  2)constructor
+    ary.constructor===Array ->true 说明ary是Array这个类的一个实例(constructor可以让用户自己来修改,所有我们一般不用这个来检测)
+
+  3)instanceof的局限性:只要在这个实例的原型链上的类,用instanceof检测的时候都为true
+    在类的继承中,我们只是单纯通过instanceof来检测数据类型的话是不准确的
+    [案例]
+    function Fn() {this.x=100;}
+    Fn.prototype = new Array;
+    var f = new Fn;
+    //f只是继承了数组中常用的方法,但是不是数组,例如：在梨树上嫁接苹果树,苹果树只是继承使用了梨树的水分和营养,但是长出来的果实还是苹果而不是梨
+    //console.log(f instanceof Fn);//->true
+    //console.log(f instanceof Array);//->true
+    //console.log(f instanceof Object);//->true
+
+    var oDiv=document.getElementById("div1");
+    //oDiv->HTMLDivElement->HTMLElement->Element->Node->EventTarget->Object
+    console.log(oDiv instanceof EventTarget);//->true
+
+3、toString检测数据类型(常用而且相对来说精准的检测方式,上述方式出现的缺陷在这里都弥补了)
+   1)原理：在Object.prototype上有一个toString方法,这个方法执行的时候,会返回方法中this关键字对应数据值的数据类型,例如：
+    //Object.prototype.toString() ->返回的是 Object.prototype 的数据类型 ->"[object Object]"
+    //f.toString() ->返回的是f的数据类型 ->"[object Object]"
+
+   2)这样的话,我们就可以让Object.prototype.toString执行,并且通过call/apply来改变里面的this关键字,也就是想检测谁的数据类型,我们就可以让this变为谁
+   Object.prototype.toString.call(12) ->检测12的数据类型 ->"[object Number]"
+   Object.prototype.toString.call("zhufeng") ->"[object String]"
+   Object.prototype.toString.call(null) ->"[object Null]"
+   Object.prototype.toString.call(undefined) ->"[object Undefined]"
+   Object.prototype.toString.call([]) ->"[object Array]"
+   Object.prototype.toString.call(/^$/) ->"[object RegExp]"
+   Object.prototype.toString.call(function(){}) ->"[object Function]"
+
+   3)检测的返回值 -> "[object 当前数据类型所属的内置类]"
+
+
+
+
+
+

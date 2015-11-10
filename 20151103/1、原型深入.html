@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+
+    //在JS中Object是所有对象数据类型的基类
+    //在JS中Function是所有函数数据类型的基类-->每一个函数(普通函数、匿名函数、自定义类或者内置类)都是它的一个实例
+    //console.dir(Function.prototype)-->call、apply、bind、toString...
+
+    //在JS中函数具有两面性：
+    //1)它是一个函数:它可以执行并且形成私有的作用域
+    //2)它是一个对象:它也可以像普通对象一样拥有自己的属性名属性值，例如:prototype、__proto__
+
+    //1、
+    //Function的prototype是一个函数数据类型(这个和其他的不大一样)，但是操作起来和用法个其他的没什么区别-->而且是一个空函数(Empty)
+    //console.log(typeof Function.prototype);//-->"function"
+    //console.log(typeof Object.prototype);//-->"object"
+
+    //在Function的prototype上内置了几个常用的方法,call和apply就是其中的方法,每一个函数数据类型都是Function的一个实例，所以每一个函数都可以使用call或者apply的方法了
+
+    //2、call和apply的作用
+    //使用call和apply来改变函数中的this关键字-->this的第五种情况(这样的改变是优先级最高的)
+    //    function fn() {
+    //        console.log(this);
+    //    }
+    //    var obj = {fn: fn};
+    //    fn();//this->window
+    //    obj.fn();//this->obj
+    //    fn.call(obj);//this->obj
+    //    obj.fn.call();//this->window
+
+    //3、call使用
+    //1)让当前的函数执行
+    //2)[this]:想让fn中的this是谁,第一个参数就写谁 第二个及以后的参数都是相当于给fn这个函数执行的时候传递的参数
+    //fn.call([this],parameter1,parameter2...)
+    //    function fn(num1, num2, num3) {
+    //        console.log(num1 + num2 + num3);
+    //        console.log(this);
+    //    }
+    //fn(100, 200, 300); ->600、window
+    //fn.call(100, 200, 300); ->this变为了100，num1传递的值200，num2传递的值300，num3没有传递值默认值是undefined
+    //特殊情况说明:
+    //[在非严格模式下]
+    //fn.call() call方法中第一个参数没有传递值，那么默认this->window
+    //fn.call(null)/fn.call(undefined) 使用call第一个参数传递的是null/undefined，那么默认的this->window
+
+    //[在严格模式下] "use strict"
+    //第一个参数传递的是啥,this就是啥
+    // fn.call(null) -> this->null
+    // fn.call(undefined) -> this->undefined
+    // fn.call() -> this->undefined
+
+    //4、apply使用
+    //1)让当前的函数执行
+    //2)[this]:想让fn中的this是谁,第一个参数就写谁
+    //然后把需要传递给函数的参数统一放在一个数组中传递进去
+    //fn.call([this],[parameter1,parameter2...])
+    //    function fn(num1, num2, num3) {
+    //        console.log(num1 + num2 + num3);
+    //        console.log(this);
+    //    }
+    //    fn.call(null, 100, 200, 300);
+    //    fn.apply(null, [100, 200, 300]);//虽然传递的是数组，但是还是和call一样相当于分别的给num1=100、num2=200...
+
+
+    //    function Fn() {
+    //        this.x = 100;
+    //    }
+    //    Fn.prototype.getX = function () {
+    //        console.log(this.x);
+    //    };
+    //    var f = new Fn;
+    //
+    //    //f.getX();//getX中的this->f
+    //    //f.__proto__.getX();//getX中的this->f.__proto__->Fn.prototype
+
+    //总结：JS中的this指向问题
+    //函数中的this是谁和函数在哪定义的和在哪执行的没有半毛钱的关系，想要知道this是谁，就按照下述五种规律分析即可:
+    //1)函数执行看方法名前面是否有".",有的话"."前面是谁,this就是谁,没有的话this就是window
+    //2)自执行函数中的this永远是window
+    //3)元素的某一个事件绑定一个方法,当事件触发执行这个方法,方法中的this就是当前的元素
+    //4)构造函数模式中,类中的this.xxx=xxx中的this就是当前类的一个实例
+    //5)使用call/apply强制改变的this的指向,第一个参数写谁,this就是谁,在非严格模式下,null/undefined/不写 this都是window
+</script>
+</body>
+</html>

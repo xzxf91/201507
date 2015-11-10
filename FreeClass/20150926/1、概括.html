@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<br>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        @import "test2.css";
+
+        #div2 {
+            margin-left: 0;
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="test.css"/>
+</head>
+<br>
+<!--作为一名合格的前端开发攻城狮，我们的任务是什么?
+-&#45;&#45;做网页(样式、内容、操作效果...)
+1)HTML+CSS实现我们的样式布局
+2)JavaScript
+3)Ajax
+
+10月17 和 10月18 第二周免费课&ndash;&gt;和我们今明两天内容基本一样
+10月24 和 10月25 第三周免费课&ndash;&gt;非常的重要，属于对前两周的加强课
+
+需要参加三周免费课结束后进行考试-->
+
+一个网页由三部分组成：HTML+CSS+JS
+
+给一个HTML标签增加样式，我们一共有四种方案：</br>
+1)在行内上添加样式 -->行内样式
+<div id="div1" style="width: 100px; height: 100px; background: red;" onclick="alert(1)"></div>
+
+2)内嵌式样式 -->在head标签中添加一个style标签，把需要设置的样式写在style中
+<div id="div2"></div>
+
+3)外联样式 -->把给元素添加的样式都写在一个外部的样式表中，然后通过link，把样式表引入到页面中即可
+<div id="div3"></div>
+
+4)导入式 -->和外链式相同，把样式写在外部的文件中，我们只是通过@import把其导入进来
+<div id="div4"></div>
+
+如果我想让#div1消失在视野中有几种办法:
+1)背景颜色是透明色 background: transparent;
+2)直接在页面中删除
+3)display:none 隐藏
+7)visibility: hidden; 隐藏
+4)定位给top和left负数值，让其消失在当前的屏幕
+5)足够的负margin值
+6)opacity设置透明度的值=0
+8)宽高为0
+9)用另外一个元素给它遮盖住 z-index
+...
+display有几个常用的属性值?-->display:inline作用:把块状元素改变成行内元素-->块状元素和行内元素的区别都有哪些?
+display:none和visibility: hidden;区别?
+opacity在IE下不兼容，我们使用什么来解决?--你是如何的来了解IE下的filter的?
+用margin实现三列布局(左右定，中间自适应)-->另外的实现的方式都有什么?
+</br></br>
+
+给HTML标签增加JS效果我们有几种方式:</br>
+1)行内引入JS(强烈不推荐使用,因为存在很大的安全问题)</br>
+2)内嵌式 --> 把JS代码写在script中，然后都放到body的末尾位置</br>
+3)外链式 --> 把JS代码写在一个外部的文件中，然后引入到页面中即可，它也是放在body的最末尾的位置</br>
+
+我们通常将CSS写在head中，把JS写在body的末尾位置，主要取决于,页面上从上到下加载的-->CSS相当于我们的图纸，你在创建页面的时候，按照图纸进行搭建和装修，JS属于让某一部分有相关的效果，那么需要先有元素才能设置效果，而元素写在body中，那么JS就要写在body的末尾位置
+
+思考题：如果我不把JS写在body的末尾，需要怎样处理?(window.onload ? 和 $(document).ready() ?)
+
+珠峰培训2015年第七期 219804959
+群公告中下载免费课视频:http://pan.baidu.com/s/1pJuVLX5
+第一周：是我们前两周的免费课视频
+第二周：是我们的免费课第三周的视频
+第三周：是我们正式课第一周的辅助视频
+
+<script type="text/javascript">
+    var oDiv2 = document.getElementById("div2");
+    oDiv2.onclick = function () {
+        var count = 0;
+        var timer = window.setInterval(function () {
+            count += 1;
+            oDiv2.style.marginLeft = count + "px";
+            if (count >= 200) {
+                window.clearInterval(timer);
+            }
+        }, 10);
+    };
+</script>
+<script type="text/javascript" src="test.js"></script>
+</body>
+</html>

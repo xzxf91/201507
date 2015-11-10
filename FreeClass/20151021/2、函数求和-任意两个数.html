@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //在当初创建函数的时候，我们并不知道，具体应该求那两个数的和，需要执行的时候才知道-->"形参"
+    //1、什么是形参?
+    //形参是形式参数，写在sum后面()中的就是形参，形参是变量
+    //2、形参的作用?
+    //我们实现一个功能，制定的时候并不知道具体的值，需要执行的时候才能知道，这样的话我们只需要定义形参变量，然后在执行的时候，把对应的值传递给我即可
+
+    function sum(num1, num2) {
+        //num1和num2就是我们的形参,num1中存储我们第一个需要加的值，num2中存储我们第二个需要加的值
+        var total = 0;
+        total += num1;
+        total += num2;
+        return total;
+    }
+    //sum(100, 200);//在执行的时候，分别的把形参的值赋值过来，num1=100 num2=200 -->在执行的时候，我们传递的永远是一个值
+    //var a = 12, b = 13;//var a=12; var b=13;
+    //sum(a, b);//即使我们放入的是变量，也是把变量存储的值赋值给我们的形参,num1=a变量存储的值12 num2=b变量存储的值13
+
+    //sum(100);//num1=100 第二个参数值没有传递的话，那么num2的默认值是undefined --> 定义了形参，执行的时候没有传递值，那么默认的形参值是undefined
+
+    var total = sum(100, 200);
+    console.log(total);
+</script>
+</body>
+</html>

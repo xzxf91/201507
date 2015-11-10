@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 28px;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            margin: 20px auto;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #FFCCFF;
+            border: 1px dashed #11c900;
+            cursor: pointer;
+            letter-spacing: 5px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    //验证码:数字和字母组合的、中文汉字的、一堆图中选出不一样的、计算求值的、滑动(旋转)的、成语填词的...
+
+    //1、定范围:26个字母的大小写+10个数字
+    var rangeStr = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";//-->索引0-61
+
+    //2、在索引范围中(0-61)随机获取四个整数，然后在到范围字符串中找到四个对应的字符
+    function getCode() {
+//        var str = "";
+//        for (var i = 0; i < 4; i++) {
+//            var ran = Math.round(Math.random() * (61 - 0) + 0);
+//            str += rangeStr[ran];
+//        }
+//        return str;
+
+        //获取四位不重复的
+//        var str = "";
+//        for (var i = 0; i < 4; i++) {
+//            var ran = Math.round(Math.random() * (61 - 0) + 0);
+//            var ranStr = rangeStr[ran];
+//            if (str.indexOf(ranStr) > -1) {
+//                i--;//不存储的话，我们的循环就要比之前的四次多一次
+//                continue;
+//            }
+//            str += ranStr;
+//        }
+//        return str;
+
+        var str = "";
+        while (str.length < 4) {
+            var ran = Math.round(Math.random() * (61 - 0) + 0);
+            var ranStr = rangeStr[ran];
+            //如果大小写也不能重复
+            var tempRan = ranStr.toLowerCase();
+            var tempStr = str.toLowerCase();
+            if (tempStr.indexOf(tempRan) === -1) {
+                str += ranStr;
+            }
+        }
+        return str;
+    }
+
+    //3、把我们获取的字符添加到div中
+    var oDiv = document.getElementById("div1");
+    oDiv.innerHTML = getCode();
+    oDiv.onclick = function () {
+        oDiv.innerHTML = getCode();
+    };
+</script>
+</body>
+</html>

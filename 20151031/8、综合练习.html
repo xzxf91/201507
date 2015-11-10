@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var num = 10;
+    var obj = {
+        num: 20,
+        fn: (function (num) {
+            this.num *= 2;//this-->window
+            num += 10;
+            var num = 30;
+            return function () {
+                this.num *= 2;
+                num += 20;
+                console.log(num);
+            }
+        })(num)//给自执行函数中的num形参赋值,我们是把全局作用域下的num全局变量的值10赋值给形参，如果想赋值obj下的num的话，需要写obj.num
+    };
+    var fn = obj.fn;
+    fn();//this->window
+    obj.fn();//this-->obj
+    console.log(window.num, obj.num);
+</script>
+</body>
+</html>

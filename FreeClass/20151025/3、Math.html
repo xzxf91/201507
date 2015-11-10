@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Math</title>
+</head>
+<body>
+<script type="text/javascript">
+    //Math:数学函数，里面提供了操作数字的一系列的方法
+    //1、Math.abs() 获取绝对值 (正数->正数 负数->正数)
+    //console.log(Math.abs(-12.5)); //-->12.5
+
+    //2、Math.ceil() 向上取整
+    //console.log(Math.ceil(12.1)); //-->13
+
+    //3、Math.floor() 向下取整
+    //console.log(Math.floor(12.9)); //-->12
+
+    //4、Math.round() 四舍五入
+    //console.log(Math.round(12.5)); //-->13
+
+    //5、Math.max/Math.min 获取一堆数中的最大值和最小值
+    //console.log(Math.max(12, 23, 13, 24, 34, 14, 25, 36)); //-->36
+
+    //6、Math.random() 获取[0-1)之间的随机小数
+    //    for (var i = 0; i < 1000; i++) {
+    //        console.log(Math.random());
+    //    }
+
+    //获取[n-m]之间的随机整数:
+    //Math.round(Math.random()*(m-n)+n)
+
+    //获取[1-10]之间的随机整数
+    //    for (var i = 0; i < 100; i++) {
+    //        console.log(Math.floor(Math.random() * 10 + 1));//[1-11)
+    //    }
+
+    //获取[12-65]之间的随机整数
+    for (var i = 0; i < 100; i++) {
+        var ran = Math.round(Math.random() * (65 - 12) + 12);
+        if (ran < 12 || ran > 65) {
+            console.log("no");
+        }
+    }
+</script>
+</body>
+</html>

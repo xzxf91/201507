@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+    //JS中动态创建DIV标签，并且添加到指定容器中
+
+    //动态创建一个div元素对象
+    var oDiv = document.createElement("div");
+    oDiv.id = "div1";
+    oDiv.style.width = "100px";
+    oDiv.style.height = "100px";
+    oDiv.style.backgroundColor = "red";
+
+    //把这个创建的对象添加到页面当中
+    //appendChild:把元素添加到我们指定容器的末尾位置
+    document.body.appendChild(oDiv);
+
+</script>
+</body>
+</html>

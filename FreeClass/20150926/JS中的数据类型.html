@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var num = 12;
+    //    var str = "zhufeng";
+    //    var boo = true;
+    //    var n = null;
+    //    var u = undefined;
+    //    var obj = {name: "李北辰"};
+    //    var ary = [12, 23, 34, 45];
+    //    var reg = /^[+-]?(\d|[1-9]\d+)(\.\d+)?$/;
+    //    var fn = function () {
+    //    }
+
+    //JS中的数据类型
+    //1)基本数据类型(值类型)
+    //number(数字)、string(字符串)、boolean(布尔)、null、undefined
+    //2)引用数据类型
+    //object(对象数据类型):{}对象 []数组 /^$/正则...
+    //function(函数数据类型)
+
+    //2、JS中如何的区分和检测这些数据类型
+    //1)typeof 用来检测数据类型的运算符
+    //typeof [value] 返回结果:首先是一个字符串,然后字符串中包含对应的数据类型，例如："number"、"string"、"boolean"、"object"、"undefined"、"function"
+    //局限性:
+    //typeof null -->"object"  null是空对象指针
+    //typeof 数组、正则等都是"object"，说明typeof不能具体的检测出object下细分的那几个数据类型
+
+    //var num = 7;
+    //console.log(typeof num);//-->检测num存储值的数据类型 -->"number"
+
+    //BAT面试题:
+    //console.log(typeof typeof typeof typeof [12, 13]);//-->"string" 连续出现两个及以上typeof检测数据类型的时候，最后的返回值是"string"，因为typeof不管返回的是啥，首先肯定是一个字符串
+    //typeof [12, 13] -> "object"
+    //typeof "object" -> "string"
+    //typeof "string" -> "string"
+    //typeof "string" -> "string"
+
+    //2)instanceof
+    //3)constructor
+    //4)Object.prototype.toString.call()
+
+
+</script>
+</body>
+</html>

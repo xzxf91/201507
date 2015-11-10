@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #ul1 {
+            margin: 20px auto;
+            padding: 20px;
+            width: 50%;
+            border: 1px dashed #11c900;
+        }
+
+        #ul1 li {
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .bg {
+            background: #ffeedd;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>习近平：靠改革为科学发展提供动力</li>
+    <li>卫计委：全面二孩不会威胁香港奶粉尿片供给</li>
+    <li>阿里被指“假货天堂” 马云放话宁赔钱不和解</li>
+</ul>
+
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].onmouseover = function () {
+            this.className = "bg";
+        };
+        oLis[i].onmouseout = function () {
+            this.className = null;
+        };
+    }
+
+    var ary = ["254名诈骗案犯罪嫌疑人从印尼柬埔寨被押解回国", "上海市委常委艾宝俊涉嫌严重违纪接受组织调查", "新版百元钞票已运至各地 将渐进替换旧版", "254名诈骗案犯罪嫌疑人从印尼柬埔寨被押解回国", "上海市委常委艾宝俊涉嫌严重违纪接受组织调查", "新版百元钞票已运至各地 将渐进替换旧版", "254名诈骗案犯罪嫌疑人从印尼柬埔寨被押解回国", "上海市委常委艾宝俊涉嫌严重违纪接受组织调查", "新版百元钞票已运至各地 将渐进替换旧版", "254名诈骗案犯罪嫌疑人从印尼柬埔寨被押解回国", "上海市委常委艾宝俊涉嫌严重违纪接受组织调查", "新版百元钞票已运至各地 将渐进替换旧版"];
+    //把ary中存储的数据都绑定到我们的页面中
+    //1、拼接字符串
+    //原理:oUl.innerHTML += str -> oUl.innerHTML=oUl.innerHTML+str ->首先把页面中已经存在的li都当做字符串获取出来,然后和最新的字符串进行拼接,最后在重新的添加到页面中,浏览器重新的把字符串渲染为标签
+    //优势:事先通过字符串拼接的方式,把需要增加的内容先放在一个容器中(str),最后统一一次的把li增加到页面中
+    //弊端:每一次把之前的元素当做字符串获取出来,然后在重新的添加进去,我们之前元素绑定的所有的事件都消失了
+    //    var str = "";
+    //    for (i = 0; i < ary.length; i++) {
+    //        str += "<li>" + ary[i] + "</li>";
+    //    }
+    //    oUl.innerHTML += str;
+
+    //2、DOM的动态创建
+    //原理:每一次循环都创建一个新的li标签,然后在把创建的内容向oUl的末尾逐步依次的增加
+    //优势:不会对原有的标签产生的任何的影响
+    //弊端:循环创建12个li,每创建一个li就增加一次,一共增加了12次 -->每当增加一次都会引发一次回流,比较的消耗性能
+    //    for (i = 0; i < ary.length; i++) {
+    //        var oLi = document.createElement("li");
+    //        oLi.innerHTML = ary[i];
+    //        oUl.appendChild(oLi);
+    //    }
+
+    //3、文档碎片->一个临时存储元素标签的容器
+    //原理:每当创建一个li先不要添加到页面中,首先添加到一个容器中,当都完成后,统一在把一个整体一起追加到页面中
+    //1)创建一个文档碎片 createDocumentFragment
+    var frg = document.createDocumentFragment();
+    //2)动态的创建li,并且暂时存放到我们的文档碎片中
+    for (i = 0; i < ary.length; i++) {
+        var oLi = document.createElement("li");
+        oLi.innerHTML = ary[i];
+        frg.appendChild(oLi);
+    }
+    //3)再把整个文档碎片追加到页面中
+    oUl.appendChild(frg);
+
+    //扩展:git的原理
+    //我们编写完成代码,首先先提交到缓存区 git add,这个缓存区就相当于文档碎片
+    //我们最后把缓存区统一的放到历史区 git commit,这就相当于整体的添加到页面
+
+
+    //console.log(oLis.length);//->15 不需要重新的获取,oLis这个集合对应的数据变为了最新的内容 ->"DOM的映射"
+
+    //DOM的回流和重绘
+    //回流(Reflows):一般情况下,当页面中的HTML结构发生改变,例如：增加、删除了元素、元素的位置发生了改变等都会引发浏览器从新的渲染和计算页面的结构-->"回流",而回流是比较消耗性能的
+    //重绘(Repaints):一般情况下,当前页面的HTML结构没有变,只是当前元素的样式发生改变,例如：outline, visibility, background color等发生改变,浏览器会重新渲染这个元素的样式-->"重绘"
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, span, h2 {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 16px;
+            font-weight: normal;
+            -webkit-user-select: none;
+        }
+
+        h2 {
+            margin: 20px auto;
+            width: 50%;
+            height: 50px;
+            line-height: 50px;
+            border-bottom: 1px dashed #11c900;
+            text-indent: 1em;
+        }
+
+        #div1 {
+            margin: 20px auto;
+            width: 40%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #E0F2BE;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        /* #div1:active {
+             background: #11c900;
+         }*/
+
+        #span1 {
+            margin-left: 15px;
+            letter-spacing: 5px;
+            font-size: 20px;
+            color: #ff3643;
+        }
+    </style>
+</head>
+<body>
+<h2>问题：认为信永亮很丑的请投票~~</h2>
+
+<div id="div1">我要投票<span id="span1">0</span></div>
+
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    var oSpan = document.getElementById("span1");
+    //1、利用全局作用域不销毁的原理，我们把需要保存的值放在全局变量中存储，每一次点击都让全局作用域下的num进行累加
+    //弊端:在真实的项目中，我们为了避免全局变量之间的相互冲突，尽量减少使用全局变量(很多大公司都是禁止使用全局变量的)
+    //    var num = 0;
+    //    oDiv.onclick = function () {
+    //        num++;
+    //        oSpan.innerHTML = num;
+    //    };
+
+    //2、我们自己创建一个不销毁的私有作用域，把需要累加的num变量做成私有变量
+    //把自执行函数的返回值xxxfff222赋值给oDiv.onclick，当我们点击oDiv的时候，执行xxxfff222;
+    //    oDiv.onclick = (function () {
+    //        var num = 0;
+    //        return function () {
+    //            num++;
+    //            oSpan.innerHTML = num;
+    //        }
+    //    })();
+
+    //3、和第二种方式的原理一样：形成一个不销毁的私有的作用域
+    //    ~function () {
+    //        var num = 0;
+    //        oDiv.onclick = function () {
+    //            num++;
+    //            oSpan.innerHTML = num;
+    //        };
+    //    }();
+
+    //4、每一次点击的时候，我们都到页面中从新的获取数字，并且加1，把最新的结果在从新的放到页面中
+    //    oDiv.onclick = function () {
+    ////        var num = Number(oSpan.innerHTML);
+    ////        oSpan.innerHTML = ++num;
+    //        oSpan.innerHTML = Number(oSpan.innerHTML) + 1;
+    //        //-->Number(oSpan.innerHTML++);
+    //    };
+
+    //5、自定义属性存储我们需要的值(性能相对最好的一种)
+    oDiv.num = 0;
+    oDiv.onclick = function () {
+//        this.num++;
+//        oSpan.innerHTML = this.num;
+        oSpan.innerHTML = ++this.num;
+    };
+
+    //这种写法不行：每一次点击的时候都执行对应的方法，形成一个新的私有作用域，从新的进行预解释，从零开始赋值，这样每一次赋值给oSpan的都是1，执行完成后当前作用域销毁，我们的num的值没有实现累积
+    //    oDiv.onclick = function () {
+    //        var num = 0;
+    //        num++;
+    //        oSpan.innerHTML = num;
+    //    }
+
+    //思考题：参考上面的方式和实现的原理，修改我们的选项卡，实现多种方式解决循环绑定事件的问题
+</script>
+</body>
+</html>

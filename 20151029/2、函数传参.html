@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var name = "china";
+    //    var age = 5000;
+    //    ~function (name, age) {
+    //        //这里的name和外面的name是不同的两个变量
+    //        console.log(name, age);//-->"china" 5000
+    //        name = "zhufeng";
+    //        age = 7;
+    //        console.log(name, age);//-->"zhufeng" 7
+    //    }(name, age);
+    //    //函数执行的时候传递的都是值-->这里是把全局下的name和age存储的值,分别的赋值给我们的私有变量(形参也是私有的变量)name和age
+    //    console.log(name, age);//-->"china" 5000
+
+
+    //需求：在私有作用域中改变外面全局变量的值
+    //    var name = "china";
+    //    var age = 5000;
+    //    ~function (name, age) {
+    //        console.log(name, age);//-->"china" 5000
+    //        //在私有作用域中国通过强制使用前缀，来执行修改哪个作用域下的变量的值-->强制把全局下的name和age进行修改
+    //        window.name = "zhufeng";
+    //        window.age = 7;
+    //        console.log(name, age);//-->"china" 5000
+    //    }(name, age);
+    //    console.log(name, age);//-->"zhufeng" 7
+
+
+    //在JS非严格模式下，我们可以通过arguments来修改参数的值，从而映射到我们的形参上(arguments改了,形参也会跟着修改)
+    //在JS严格模式下["use strict"]，以上的规律起不到作用
+    //    var name = "china";
+    //    var age = 5000;
+    //    ~function (name, age) {
+    //        console.log(name, age);//-->"china" 5000
+    //        arguments[0] = "zhufeng";
+    //        arguments[1] = 7;
+    //        console.log(name, age);//-->"zhufeng" 7
+    //    }(name, age);
+</script>
+</body>
+</html>

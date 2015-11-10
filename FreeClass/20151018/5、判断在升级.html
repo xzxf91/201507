@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .bg0 {
+            background-color: #FFF38F;
+        }
+
+        .bg1 {
+            background-color: #ff3333;
+        }
+
+        .bg2 {
+            background-color: #11c900;
+        }
+
+        .bg3 {
+            background-color: #ffcccc;
+        }
+
+        .bg4 {
+            background-color: #0044DD;
+        }
+    </style>
+</head>
+<body class="bg0">
+
+<script type="text/javascript">
+    var body = document.body;
+    body.onclick = function () {
+        var bg = body.className;
+        switch (bg) {
+            case "bg0":
+                body.className = "bg1";
+                break;
+            case "bg1":
+                body.className = "bg2";
+                break;
+            case "bg2":
+                body.className = "bg3";
+                break;
+            case "bg3":
+                body.className = "bg4";
+                break;
+            default:
+                body.className = "bg0";
+        }
+//        if (bg === "bg0") {
+//            body.className = "bg1";
+//        } else if (bg === "bg1") {
+//            body.className = "bg2";
+//        } else if (bg === "bg2") {
+//            body.className = "bg3";
+//        } else if (bg === "bg3") {
+//            body.className = "bg4";
+//        } else {
+//            body.className = "bg0";
+//        }
+    };
+
+
+</script>
+</body>
+</html>

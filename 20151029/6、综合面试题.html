@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    var num = 10;
+    var obj = {
+        num: 20,
+        fn: (function (num) {
+            this.num *= 2;
+            num += 10;
+            var num = 30;
+            return function () {
+                this.num *= 2;
+                num += 20;
+                console.log(num);
+            }
+        })(num)//把全局的num的值10赋值给自执行函数的形参(obj.num才是把obj下的20赋值给形参)
+    };
+    var fn = obj.fn;
+    fn();//-->50
+    obj.fn();//-->70
+    console.log(window.num, obj.num);//-->40、40
+</script>
+</body>
+</html>

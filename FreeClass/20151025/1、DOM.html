@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 14px;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica;
+        }
+
+        #ul1 {
+            margin: 10px auto;
+            padding: 15px;
+            width: 70%;
+            border: 1px solid #11c900;
+        }
+
+        #ul1 li {
+            height: 35px;
+            line-height: 35px;
+            /*截取文字并且显示...*/
+            text-overflow: ellipsis; /*截取超出的部分用省略号代替*/
+            white-space: nowrap; /*强制不换行*/
+            overflow: hidden; /*溢出隐藏*/
+        }
+
+        .c0 {
+            background: #FFCCFF;
+        }
+
+        .c1 {
+            background: #ffe470;
+        }
+
+        .hover {
+            background: #11c900;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>在没有努力之前,请先不要谈天赋！</li>
+    <li>定义自己的本阶段学习目标,直接上薪资;勿忘初心,方得始终;</li>
+    <li>站在台风口上,猪都能飞起来;互联网没有大家想象的那样进入寒冬!</li>
+    <!--以上是给大家的箴言,下面是我们课程学习的说明-->
+    <li id="li4">周一到周五每天必须要保持3-4小时学习的时间:看视频预习、做作业或者自己总结笔记在或者自己拿实战项目练习</li>
+    <li>正式课我们会有六次考试:第二周、第三周、第四周、第五周、第八周、第九周,考试的时候周末班(在线周末)周六早上9:30到学校,补考统一在周日晚上下课;时间错过了本次考试作废,考试费不发;</li>
+    <div>加错地方了</div>
+</ul>
+
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    for (var i = 0; i < oLis.length; i++) {
+        oLis[i].className = "c" + i % 2;
+        //oldClass是每一个li的自定义属性，目的是存储之前的class样式的值
+        oLis[i].oldClass = "c" + i % 2;
+        oLis[i].onmouseover = function () {
+            this.className = "hover";
+        };
+        oLis[i].onmouseout = function () {
+            //在绑定之前,我们把每一个li自己的class值保存在一个自定义属性上，当我们鼠标离开的时候，我们在重新的获取这个自定义属性的值，设置其class等于之前的值即可
+            this.className = this.oldClass;
+        };
+    }
+
+
+    //1、节点之间关系属性的练习
+    //1)获取oUl下所有的元素子节点(获取所有子节点用childNodes)
+    /*
+     * children:Gets all the elements of an element under a child node
+     * @parameter:
+     *   curEle:[object] The element object that we currently have to operate
+     * @return:
+     *  [Array] Gets the collection of elements of the elements
+     * by Team on 2015/10/25
+     */
+    //    function children(curEle) {
+    //        var ary = [];
+    //        var allNodes = curEle.childNodes;
+    //        for (var i = 0; i < allNodes.length; i++) {
+    //            var cur = allNodes[i];
+    //            if (cur.nodeType === 1) {
+    //                ary.push(cur);
+    //            }
+    //        }
+    //        return ary;
+    //    }
+    function children(curEle) {
+        var allNodes = curEle.childNodes, ary = [];
+        for (var i = 0; i < allNodes.length; i++) {
+            var cur = allNodes[i];
+            cur.nodeType === 1 ? ary[ary.length] = cur : null;
+        }
+        return ary;
+    }
+    var oUlChild = children(oUl);
+    console.log(oUlChild);
+
+
+    //2)获取某一个元素的上一个哥哥元素节点(上一个哥哥节点previousSibling)
+    //-->首先获取其哥哥节点，然后判断是否是元素节点，不是的话基于当前的这个哥哥，继续向上找，一直找到是元素节点为止(如果到头了还没有也结束查找)
+    /*
+     * prev:Get on a brother element node
+     * @parameter
+     *   curEle:[object] The element object that we currently have to operate
+     * @return
+     *   [object] brother element node
+     * by Team on 2015/10/25
+     */
+    function prev(curEle) {
+        if (curEle.previousElementSibling) {
+            return curEle.previousElementSibling;
+        }
+        var pre = curEle.previousSibling;
+        while (pre && pre.nodeType != 1) {
+            pre = pre.previousSibling;
+        }
+        return pre;
+    }
+    //    var oLi4 = document.getElementById("li4");
+    //    var pre = prev(oLi4);
+    //    console.log(pre);
+
+    //3)获取所有的哥哥元素节点
+    //-->一直查找上一个哥哥节点，直到找完位置，在这个查找过程中，发现是元素的我们保留下来
+    //    function prevAll(curEle) {
+    //        var pre = curEle.previousSibling, ary = [];
+    //        while (pre) {
+    //            pre.nodeType === 1 ? ary.unshift(pre) : null;
+    //            pre = pre.previousSibling;
+    //        }
+    //        return ary;
+    //    }
+    function prevAll(curEle) {
+        var ary = [];
+        var preEle = prev(curEle);
+        while (preEle) {
+            ary.unshift(preEle);
+            preEle = prev(preEle);
+        }
+        return ary;
+    }
+
+    var oLi4 = document.getElementById("li4");
+    console.log(prevAll(oLi4));
+
+    //思考题：
+    // 获取下一个弟弟元素节点next
+    // 获取所有的弟弟元素节点nextAll
+    // 获取相邻的(上一个哥哥元素节点+下一个弟弟元素节点)元素节点 sibling
+    // 获取所有的兄弟元素节点 siblings
+    // 获取第一个子元素节点 first
+    // 获取最后一个子元素节点 last
+    // 获取当前元素的索引位置 index
+
+</script>
+</body>
+</html>

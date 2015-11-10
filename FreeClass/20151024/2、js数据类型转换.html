@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //1、将其他的数据类型转换为布尔类型？
+    //只有0、NaN、空字符串、null、ndefined代表false
+    //![] --> false
+    //!!"" --> false
+    //if([]){alert("true");} --> 判断条件的真和假 []转换为布尔类型是真，条件成立  -->"true"  alert是把所有要输出的内容先转换为字符串然后在输出，例如：alert(12)-->"12"  alert([])-->""
+    //if(oDiv){} -->首先把oDiv这个变量存储的值转换为布尔类型判断真假，真条件成立...
+    //if("12px"+10){alert(true);}else{alert(false);} --> "12px"+10 --> "12px10" --> true --> "true"
+    //if("12px"-10){alert(true);}else{alert(false);} --> "12px"-10 --> NaN --> false --> "false"
+
+
+    //2、将其他的数据类型转换为数字?-->Number
+    //true-->1 false-->0
+    //""-->0  "12"-->12  "12px"-->NaN
+    //[]--> []先转换为字符串""(toString),然后在把""转换为数字0(Number) -->0
+
+
+    //3、value1==value2 如果两个值的数据类型不一样，首先转换为一样的值，然后在进行比较 -->在比较的时候，不一样数据类型之间的转换规则?
+    //1)对象==对象  永远不相等(是不同的内存地址) 例如:[]==[] -->false
+    //2)对象==字符串  把对象转换为字符串(toString) 例如:[]=="" -->true
+    //3)对象==布尔  都转化为数字(对象->字符串->数字 布尔true->false->0) 例如:
+    //[]==false  []->0 false->0  -->true
+    //![]==false  首先利用！把空数组转换为布尔类型在取反->false  false==false -->true
+    //4)对象==数字 对象转换为数字  例如:[]==0 -->true  []==1 -->false
+    //5)字符串==布尔 都转换为数字  例如:""==true-->false  ""==false-->true
+    //6)字符串==数字 字符串转换为数字  例如:"12"==12-->true
+    //7)布尔==数字 布尔转化为数字  例如:true==1-->true  true==2-->false
+    //8)null==undefined -->true  null===undefined-->false
+    //null/undefined和其他的任何数据类型都不相等
+    //9)NaN和谁都不相等(和自己也不相等) NaN==NaN-->false
+
+</script>
+</body>
+</html>

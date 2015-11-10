@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //=:是赋值
+    //==:比较左右两边的值是否相同，相同返回的是true，不相同返回的是false
+    //value1==value2:首先看两个值是否为同一个数据类型，如果不是，浏览器默认会转换为相同的数据类型后，然后在进行值的比较，例如：
+    //"12"==12 -->把"12"转换为数字(Number("12")-->12) -->12==12 -->true
+    //===:绝对比较 遇到左右两边数据类型不一样，不会进行数据类型转换，肯定是不相等的
+
+    //number:正数、负数、零、小数、NaN
+    //1、NaN:not a number 不是一个数，但是属于number类型的
+    //typeof NaN --> "number"
+    //NaN==NaN --> false -->NaN和自己以及任何值都不相等
+
+    //2、Number(value) 严格的把其他的数据类型转换为number类型
+    //Number("12") -->12
+    //Number("12.5") -->12.5
+    //Number(true) -->1  Number(false) -->0
+    //Number("") -->0
+    //Number("12px") -->NaN Number是"严格"转换的，对于把字符串转换为数字来说，只有字符串中的每一个字符都是数字才可以转换，只要有一个不是结果就是NaN
+
+    //3、parseInt/parseFloat 非严格将其他的数据类型转换为number类型
+    //parseInt("12px") -->12
+    //parseInt("12.5px") -->12
+    //parseFloat("12.5px") -->12.5
+    //从左到右依次的进行查找，把找到的有效数字字符转换为数字，遇到一个非有效数字字符，则立即停止查找(不管后面是否还有)；parseFloat只是比parseInt多识别一个"."
+    //parseInt("12px13") -->12
+    //parseInt("px13") -->NaN
+
+    //4、toFixed:数字.toFixed(n) 保留"."后面n位小数
+    //3.141592657.toFixed(2) -->"3.14"
+
+    //5、isNaN:用来检测一个值是否为有效数字,如果是有效数字返回false，不是有效数字才返回true
+    //当我们检测的值不是number类型的，浏览器会默认调用Number将其转换为数字类型，然后在进行检测
+    //isNaN("12") -->false 说明"12"是有效的数字
+    //isNaN("12px") -->true
+
+
+    //BAT公司的面试题:
+    //    var num = Number("12.5px");//-->num=NaN
+    //    if (num == 12.5) {
+    //        console.log(12.5);
+    //    } else if (num == NaN) {
+    //        console.log(NaN);
+    //    } else if (typeof num == "number") {
+    //        console.log("number");
+    //    } else {
+    //        console.log("以上啥也不是~~");
+    //    }
+
+
+    //字符串:''或者""包起来的都是字符串
+    //提供了十几个我们常用的方法-->免费课视频第二周：String及应用
+    //数学运算符：+、-、*、/、%(12%3 12膜3 12除以3取余数->0)
+    //    "12"+3  --> "123"
+    //    "12"-3  --> 9 -->调用Number将"12"变为数字在进行运算
+    //    "12"/3  --> 4
+    //    "12"*3  --> 36
+    //"+"在JS中不仅仅是数学运算，在遇到字符串的时候，属于字符串的拼接
+
+    //布尔:true/false
+    //!:先将其他的数据类型转换为布尔类型，然后在取反
+    //!!:将其他的数据类型转换为布尔类型 等价于 Boolean()
+    //将其他的数据类型转换为布尔类型遵循一条规律："只有 0、NaN、空字符串、null、undefined 变为false，其余的都是true"
+
+
+    //null:空
+    //undefined:空(未定义)
+    //两个都代表的是没有,区别是什么?
+    //null:暂时没有，我以后会有的
+    //undefined:压根就没有
+    //耿大大的女朋友-->null  耿大大的男朋友-->undefined
+</script>
+</body>
+</html>

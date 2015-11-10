@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1">我是div1</div>
+
+<script type="text/javascript">
+    function fn() {
+        console.log(this.innerHTML);
+    }
+    var innerHTML = "我是window";
+    var obj = {
+        innerHTML: "我是obj",
+        aa: fn
+    };
+    var oDiv = document.getElementById("div1");
+
+    //    fn();//this-->window
+    //    obj.aa();//this-->obj
+    //    oDiv.onclick = fn;//this-->oDiv
+
+    //    oDiv.onclick = function () {
+    //        console.log(this);//this-->oDiv
+    //        fn();//fn中的this-->window
+    //    };
+
+    //1、this
+    //我们只研究函数中this的情况
+    //this当前行为执行的主体
+    //张俊玲有钱了，去沙县小吃吃早餐，鸡蛋灌饼多加两个鸡蛋-->张俊领就是我们当前吃早餐这个行为的主体-->this
+    //沙县小吃是吃饭的地方，这个是当前吃早餐这个行为的上下文->context
+
+    //this是谁和函数在哪定义的和在哪执行的都没有半毛钱关系
+    //    function fn() {
+    //        console.log(this);
+    //    }
+    //    fn();//this-->window
+    //    ~function () {
+    //        fn();//this-->window
+    //        function aa(){
+    //            console.log(this);
+    //        }
+    //        aa();//this-->window
+    //    }();
+
+    //1、只有函数执行后我们才知道执行的主体是谁
+    //函数名(); -->看函数名前面是否有"."，有的话点前面是谁this就是谁,没有的话this就是window
+
+    //2、自执行函数执行，不管在哪执行的，里面的this永远是window
+    //~function(){}();
+
+    //3、元素的某一个事件绑定一个方法，当我们事件触发的时候，执行对应的方法，并且方法中的this是当前的这个元素
+    //oDiv.onclick=function(){}; 首先把函数对应的堆内存的地址赋值给oDiv的onclick事件(事件绑定)，当我们的click行为发生的时候，会把绑定的这个函数执行
+    //-->this是oDiv
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //定时器:浏览器提供的一个方法，设定一个时间，当到达这个时间后做一件事情
+
+    //设置一个定时器-->设置一个等待的时间-->等-->到达时间后执行对应的操作-->执行完成后我们清除定时器
+
+    //去银行办理业务:
+    //取一个排队号   我去工行拿到一个号376，提示你前面还有375位
+    //等
+    //到自己后去办理业务
+    //办理完业务首先银行会把你的号消除，自己还要把纸条撕掉
+
+    //1、JS中有两个定时器的方法
+    //window.setTimeout([function],[interval]);
+    //window.setInterval([function],[interval]);
+    //[function]:我们要处理的事情，是一个函数数据类型的值
+    //[interval]:时间因子，我们要等待的时间
+    //区别：
+    //setTimeout到达时间执行方法，方法执行完成定时器就停止了(定时器还在)
+    //setInterval到达时间执行方法，方法执行完成，以后每隔这么长时间都会在重新的执行一次，只有手动清除后才停止
+
+    //    var count = 0;
+    //    window.setInterval(function () {
+    //        count++;
+    //        console.log(count);
+    //    }, 1000);
+
+    //2、定时器是有返回值的，是一个数字，代表当前是第几个定时器
+    //    var timer1 = window.setTimeout(function () {
+    //    }, 1000);
+    //    var timer2 = window.setTimeout(function () {
+    //    }, 1000);
+    //    var timer3 = window.setTimeout(function () {
+    //    }, 1000);
+    //setInterval设置一次只是一个定时器，执行多次用的都是同一个，所以返回值是不变的
+    //    var count = 0;
+    //    var timer = window.setInterval(function () {
+    //        count++;
+    //        console.log(count);
+    //        if (count >= 10) {
+    //            window.clearInterval(timer);//只是浏览器把你的定时器清掉了(银行把你的号取消了)
+    //            timer = null;//(我们手动的把号的纸条销毁)
+    //        }
+    //    }, 1000);
+
+    //window.clearInterval() / window.clearTimeout() 清除定时器
+
+    //    var timer1=window.setTimeout(function(){},1000);
+    //    window.clearTimeout(timer1);
+    //    var timer2=window.setTimeout(function(){},1000);
+    //    console.log(timer2);//-->2
+</script>
+</body>
+</html>

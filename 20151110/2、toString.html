@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //toString转换为字符串
+    //对于数字、布尔、数组、函数等数据类型来时候确实是转换为了字符串，但是对于对象({})数据类型来说，不是直接的转换成字符串那么简单
+
+    //var obj = {num: 12};
+    //console.log(obj.toString());//->"[object Object]"
+    //对于对象数据类型(单独指{})来说,toString不是严格的转换为字符串,而是返回的是当前实例的数据类型 -->Object.prototype.toString:返回的是当前实例的具体数据类型"[object 实例具体所属的内置类]"
+    //    function Fn() {}
+    //    var f = new Fn;
+    //    console.log(f.toString());//->"[object Object]" 而不是 "[object Fn]"
+
+    //数组
+    //[].__proto__.toString() -> Array.prototype.toString() 将数组转换为字符串的 ->""
+    //[].__proto__.__proto__.toString() -> Object.prototype.toString() 返回的是数据类型 ->"[object Object]"
+    //Object.prototype.toString.call([]) ->"[object Array]"
+
+
+    //括号表达式:
+    //(function(){}) 定义一个函数
+    //({name:12}) 定义一个对象
+
+    //分别的定义了两个函数,但是只把最后一个函数执行了
+    //    (function () {
+    //        console.log(1);
+    //    }, function () {
+    //        console.log(2);
+    //    })(); //->2
+
+    //eval("1,2,3,4,5") ->5
+
+    //function fn() {console.log(this);}
+    //var obj = {fn: fn};
+    //fn(); this->window
+    //obj.fn(); this->obj
+    //(obj.fn)();//this->obj
+    //(fn, obj.fn)();//this->window
+    //(obj.fn, obj.fn)();//this->window
+    //对于括号表达式,如果括号里面只有一部分内容,这样写一般情况下是为了满足语法，如果不是为了满足语法就是神经病
+    //如果括号中有两个及以上部分内容,首先这样写的人就是神经病:写两部分,两部分都定义了,但是只有最后一部分执行,并且执行的时候里面的this就是window,不管你长啥样
+
+    /*
+     * isType:检测数据类型
+     * @parameter
+     *   value:要检测的数据类型的值
+     *   type:[string] 要判断的数据类型字符串,例如:"Function"、"Array"、"Number"、"Object"...
+     * @return:[boolean] true代表是这个数据类型 false代表不是这个数据类型
+     */
+    //    function isType(value, type) {
+    //        return Object.prototype.toString.call(value) === "[object " + type + "]";
+    //    }
+
+    function isType(value, type) {
+        //在正则表达式构造函数模式方式中,由于第一个参数传递的是一个字符串,所以在这里有一些技巧需要知道:这里使用转译字符只有\\两个同时出现才会起到作用(左边的是把右边的变为可以转译的转译字符)
+        var reg = new RegExp("^\\[object " + type + "\\]$", "i");
+        return reg.test(Object.prototype.toString.call(value));
+    }
+
+    var ary = [];
+    console.log(isType(ary, "boolean"));
+    //如果返回的是true代表是一个数组,false代表不是一个数组
+</script>
+</body>
+</html>

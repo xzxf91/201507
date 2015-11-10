@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .open {
+            background-color: #FFF38F;
+        }
+
+        .close {
+            background-color: rgba(0, 0, 0, 0.5); /*#000000*/
+            /*rgba是css3中新增加的，在IE6~8下不兼容，前三个是颜色值，最后一个是透明度*/
+        }
+    </style>
+</head>
+<body class="open">
+
+<script type="text/javascript">
+    //通过获取元素的样式类名，来进行判断，并且给元素设置对应的样式类名
+    var body = document.body;
+    body.onclick = function () {
+        var c = body.className;
+//        if (c === "open") {
+//            body.className = "close";
+//        } else {
+//            body.className = "open";
+//        }
+        //c === "open" ? body.className = "close" : body.className = "open";
+
+        body.className = (c === "open" ? "close" : "open");//=右边的永远都代表的是值，此处，我们首先通过三元运算符进行计算，把最后的"close"/"open"赋值给body.className
+    };
+
+
+</script>
+</body>
+</html>

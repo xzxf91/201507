@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        input {
+            display: block;
+            margin: 20px;
+            width: 100px;
+            height: 35px;
+            border: 1px solid #ff3333;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<input type="button" name="btn"/>
+<input type="button" name="btn"/>
+<input type="button" name="btn"/>
+<input type="button" name="btn"/>
+<input type="button" name="btn"/>
+
+<script type="text/javascript">
+    //getElementsByName:通过元素的name属性的中获取一组元素（类数组集合）
+    //1)getElementsByName的上下文只能是document
+    var oBtns = document.getElementsByName("btn");
+    //    for (var i = 0; i < oBtns.length; i++) {
+    //        oBtns[i].onclick = function () {
+    //            alert("我是第" + (i + 1) + "个按钮~~");
+    //        }
+    //    }
+    //我们在循环绑定点击事件的时候，每一个按钮绑定的方法此时存储的都是"代码字符串"，所以我们看到的i只是字符，不是变量
+    //当循环绑定完成(i=5)，我们开始点击某一个按钮，此时才会把方法中的"字符串"变为代码执行，用到了变量i，但是已经都是5了，所以不管点击哪一个，我们输出的都是"我是第6个按钮~~"
+
+    //用自定义属性解决
+    for (var i = 0; i < oBtns.length; i++) {
+        oBtns[i].index = i;
+        oBtns[i].onclick = function () {
+            alert("我是第" + (this.index + 1) + "个按钮~~");
+        }
+    }
+</script>
+
+
+<script type="text/javascript">
+    //    function sum() {
+    //        var total = null;
+    //        for (var i = 0; i < arguments.length; i++) {
+    //            var cur = Number(arguments[i]);
+    //            if (!isNaN(cur)) {
+    //                total += cur;
+    //            }
+    //        }
+    //        return total;
+    //    }
+    //    var total = sum(12, 23, 34, 45, 56);
+    //    console.log(total);
+</script>
+</body>
+</html>

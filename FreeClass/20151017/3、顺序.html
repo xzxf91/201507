@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1 {
+            /*css实现让元素处于屏幕中心*/
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -50px 0 0 -50px;
+
+            width: 100px;
+            height: 100px;
+            background: #ff3333;
+        }
+
+        .box {
+            border-radius: 50%;
+        }
+    </style>
+
+    <script type="text/javascript" src="jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+        //把JS放在标签的前面
+        //console.log(document.getElementById("div1"));//-->null 因为此时还没有加载我们的HTML标签呢，所以获取不到
+
+        //需求：只想放在前面，但是还可以获取到
+        //1)window.onload:浏览器加载完成的时候(页面中的HTML标签、图片、文字等都加在完成)
+        //        window.onload = function () {
+        //            console.log(document.getElementById("div1"));//-->现在就可以获取到了
+        //        };
+        //在同一个页面中，我们的window.onload只能使用一次，使用多次，后面的会把前面的都覆盖掉
+        //        window.onload = function () {
+        //            console.log("ok");
+        //        };
+
+        //2)使用jQuery实现:我们需要把jQuery引入到我们的页面中
+        //$(document).ready:只要HTML标签加载完成即可
+        //        $(document).ready(function () {
+        //            console.log(document.getElementById("div1"));
+        //        });
+        //这个方法可以在同一个页面中使用多次
+        //        $(document).ready(function () {
+        //            console.log("ok");
+        //        });
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    //1、为什么JS通常写在body的最后面?
+    //页面是从上到下加载的，而我们的JS的主要目的就是操作页面上元素标签的，那么需要先有标签，然后我们才能获取操作-->JS放在标签的后面
+    //console.log(document.getElementById("div1"));
+
+
+    //console.log:在控制台输出我们要输出的内容 F12打开控制台，在谷歌浏览器中，我们要输出的内容就在Console这个页卡下
+    //console.dir:也是在控制台输出，只不过比log输出的更加详细一些
+    //console.log(document.getElementById("div1"));
+    //console.dir(document.getElementById("div1"));
+    //思考题：回去后，加入"珠峰培训2015年第七期 219804959"，群公告中找JS的下载地址:JavaScript免费基础课下载地址 http://pan.baidu.com/s/1pJuVLX5-->第一周：基础课专题--页面中常用的几种输出方式-->document.write、innerHTML、innerText、console.table...
+
+
+    //2、我们想让#div1这个元素变成圆形-->JS获取这个元素，然后设置样式 border-radius:50%;
+    //document:文档对象，代表整个文档
+    //window:浏览器对象，代表整个浏览器
+
+    //在整个文档中，通过元素的ID来获取这个元素
+    // --> getElementById
+    // --> document的作用是:限定了我们获取这个元素的范围 -->上下文 context 例如：郑建祥同学在珠峰学完JS毕业了，有钱了，早饭去北京饭店吃鸡蛋灌饼，加两个鸡蛋，吃饭这件事情的上下文就是"北京饭店"
+    //document.getElementById("div1")
+
+    //获取到元素了，接下来我们用JS给其设置样式:设置行内样式(style='')、给元素增加指定的样式类名(class='box')
+    //1)设置行内样式
+    //元素(document.getElementById("div1")) "的" style样式中 "的" borderRadius属性值是50%
+    document.getElementById("div1").style.border = "5px solid green";
+    document.getElementById("div1").style.borderRadius = "50%";
+    document.getElementById("div1").style.width = "200px";
+    document.getElementById("div1").style.height = "200px";
+
+    //2)给元素增加指定的样式类名
+    //className就相当于手动的增加class='box'
+    //document.getElementById("div1").className = "box";
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //BAT面试必考题:
+    var num1 = 12;
+    var num2 = num1;//-->把num1变量存储的值12赋值给我们的num2变量-->num2=12
+    num2 = 13;
+    console.log(num1);//-->12
+    //基本数据类型是按照值来操作的，两个不同的变量之间没有什么关系，互不影响
+
+    var obj1 = {name: "温秀霞", age: 18};
+    var obj2 = obj1;
+    obj2.age = 20;
+    console.log(obj1.age);//-->20
+
+    //当打开一个页面的时候，浏览器会默认的提供一个供JS代码执行的环境-->全局作用域
+
+    //引用数据类型是按照对内存空间的引用地址来进行操作的
+    //var obj1 = {name: "温秀霞", age: 18};
+    //1)开辟一个新的存储空间(我们假设地址为xxxfff000)
+    //2)把属性名和属性值分别存储到xxxfff000这个空间中
+    //3)把xxxfff000这个地址当做值赋值给我们的obj1变量
+
+    //var obj2 = obj1;
+    //1)把obj1存储的那个地址xxxfff000赋值给我们的obj2，此时obj2和obj1一样都是通过xxxfff000指向同一个内存空间-->此时obj1和obj2就有关系了
+
+    //obj2.age = 20;
+    //1)obj2首先同过地址xxxfff000找到对应的内存空间
+    //2)把空间中的age修改为20
+
+    //上述描述请参照图"基本数据类型和引用数据类型区别"解读
+
+    //基本数据类型是按照值操作的，引用数据类型是按照地址来操作的-->本质区别
+</script>
+</body>
+</html>

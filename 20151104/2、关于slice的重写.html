@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //Array的原型上定义了一个slice的方法,主要是实现从指定索引之间获取数组中的某一部分
+    //特殊情况: n,m [参数的初始化]
+    //一个参数都不传递  n=0  m=ary.length
+    //只传递一个参数 n=arguments[0] m=ary.length
+    //传递两个参数 n=arguments[0] m=arguments[1]
+
+    //n或者m不是有效的数字
+    //第一个不是有效数字 变为0  第二个不是有效数字返回[] m=0
+
+    //n或者m是小数
+    //向下取整
+
+    //n或者m是负数
+    //n=ary.length+n
+    //m=ary.length+m
+
+    //n或者m大于数组的总长度
+    //正数
+    //m大于的话，截取到末尾 m=ary.length
+    //n大于的话，返回的是空数组 n=ary.length
+
+    //负数
+    //n或者m都等于0
+
+    //    for(var i=n;i<m;i++){
+    //
+    //    }
+    Array.prototype.mySlice = function mySlice() {
+        //this->我们要操作的那个数组
+        var n = 0, m = this.length, arg = arguments, newAry = [];
+        arg.length >= 1 ? n = arg[0] : null;
+        arg.length >= 2 ? m = arg[1] : null;
+        n = Math.floor(n);
+        m = Math.floor(m);
+        isNaN(n) ? n = 0 : null;
+        isNaN(m) ? m = 0 : null;
+        Math.abs(n) > this.length ? (n > 0 ? n = this.length : n = 0) : null;
+        Math.abs(m) > this.length ? (m > 0 ? m = this.length : m = 0) : null;
+        n < 0 ? n = this.length + n : null;
+        m < 0 ? m = this.length + m : null;
+        for (var i = n; i < m; i++) {
+            newAry[newAry.length] = this[i];
+        }
+        return newAry;
+    };
+
+    var ary = [12, 23, 34, 45, 56, 67];
+
+    //    console.log(ary.slice());
+    //    console.log(ary.slice(2));
+    //    console.log(ary.slice("哈哈", 4));
+    //    console.log(ary.slice(0, "呵呵"));
+    //    console.log(ary.slice(-10,-7));
+
+
+</script>
+</body>
+</html>

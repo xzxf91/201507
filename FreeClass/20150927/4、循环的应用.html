@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #ul1 {
+            margin: 50px auto;
+            padding: 15px;
+            width: 500px;
+            border: 1px solid #0fb200;
+            border-radius: 10px; /*css3中新增加的圆角的属性 在IE6~8下不兼容*/
+        }
+
+        #ul1 li {
+            height: 35px;
+            line-height: 35px;
+        }
+
+        .c0 {
+            background: #FFE0E9;
+        }
+
+        .c1 {
+            background: #FFF38F;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>习近平出席联合国发展峰会并发表讲话</li>
+    <li>达赖集团前要员安曲活佛回国</li>
+    <li>江苏上万冷冻胚胎将销毁超70%冻胚父母失联</li>
+    <li>美国近期将包机向中国遣返逃犯和非法移民</li>
+    <li>美团推出手机买单，强力业务转型背后的真相几何？</li>
+    <li>安徽交警曝光“超速王” 接近飞机起飞速度</li>
+    <li>奥迪A8女司机撞坏多辆车后投案</li>
+    <li>80岁捐的一分不剩？马云那满纸泪的公益之路</li>
+    <li>华为否认裁员余承东招聘应届生起始年薪最高35万</li>
+</ul>
+<script type="text/javascript">
+    //var oUl = document.getElementById("ul1");
+    //getElementsByTagName:通过元素的标签名来获取元素集合(HTMLCollection)
+    //oUl限定了我们获取的范围是#ul1下的li，oUl就是我们当前获取的上下文(context)
+    //var oLis = oUl.getElementsByTagName("li");
+    //console.dir(oLis);//获取的也是对象数据类型的值,以数字作为属性名,并且数字代表的是当前是第几个li,例如：0是第一个li, 1是第二个li...；还有一个叫做length的属性代表获取的总个数
+    //我们把代表位置的数字属性名叫做"索引"，我们的元素集合是以数字作为索引，索引从0开始，逐级递增，还有一个叫做length的属性代表长度--->类数组(类似数组但不是数组)
+    //oLis[0]获取第一个li oLis[1] 获取第二个li...
+
+    //如何的在JS中设置元素的class属性的值:className
+    //oLis[0].className = "c0";
+    //oLis[1].className = "c1";
+
+    //    for (var i = 0; i < oLis.length; i++) {
+    //        //i=0 oLis[0].className=xxx
+    //        //i=1 oLis[1].className=xxx
+    //        //i=2 oLis[2].className=xxx
+    //        //...
+    //        //oLis[i].className=xxx 我们每一次循环的时候,i这个变量存储的值就是我们需要获取li的那个索引
+    //        //oLis[i].className = "c0";
+    //        //i=0 第一行 i是偶数 奇数行
+    //        //i=1 第二行 i是奇数 偶数行
+    //        //i是奇数，代表偶数行，i是偶数，代表的是奇数行
+    //        //i%2 i膜2-->i除以2的余数 0(偶数)/1(奇数)
+    //        if (i % 2 === 0) {
+    //            oLis[i].className = "c0";
+    //        } else {
+    //            oLis[i].className = "c1";
+    //        }
+    //    }
+
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    for (var i = 0; i < oLis.length; i++) {
+//        if (i % 2 === 0) {
+//            oLis[i].className = "c0";
+//        } else {
+//            oLis[i].className = "c1";
+//        }
+        //oLis[i].className = (i % 2 === 0 ? "c0" : "c1");
+        oLis[i].className = "c" + i % 2;
+    }
+
+
+</script>
+</body>
+</html>

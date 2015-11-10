@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>******重要重要重要</title>
+</head>
+<body>
+<script type="text/javascript">
+    //一道BAT的经典面试题:
+    var num1 = 12;
+    var num2 = num1;
+    num2 = 13;
+    console.log(num1);//-->12
+
+    var obj1 = {age: 18};
+    var obj2 = obj1;//把obj1变量存储的值赋值给我们的obj2
+    obj2.age = 19;
+    console.log(obj1.age);//-->19
+
+    //基本数据类型和引用数据类型的本质区别?
+
+    //1、当我们打开页面的时候，浏览器首先会提供一个供全局JS代码执行的环境-->全局作用域
+    //2、JS代码开始从上到下执行
+    //基本数据类型的操作：
+    //1)定义一个变量，我们是直接的把值赋值给这个变量--->基本数据类型是直接的操作值的
+
+    //引用数据类型的操作：
+    //引用数据类型操作的不是值，而是空间的引用地址
+    //1)首先开辟一个新的内存空间,我们假设地址为xxxfff000
+    //2)把对象中的属性名和属性值分别的存储到这个内存空间中
+    //3)把空间的地址xxxfff000赋值给我们的变量obj1-->obj1=xxxfff000;
+    //4)var obj2=obj1; 相当于obj1把存储的那个地址xxxfff000告诉给了我们的obj2 --> obj2 = xxxfff000; -->此时的obj1和obj2存储的是同一个空间的地址
+    //5)obj2.age = 19; obj2通过地址找到内存空间，把空间中的age的值变为了19
+</script>
+</body>
+</html>

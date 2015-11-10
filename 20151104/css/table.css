@@ -1,0 +1,39 @@
+body, div, table, thead, tbody, th, tr, td {
+    margin: 0;
+    padding: 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 14px;
+    -webkit-user-select: none;
+}
+
+#tab {
+    margin: 10px auto;
+    padding: 15px;
+    width: 300px;
+    border: 1px solid #31b0d5;
+    border-radius: 10px;
+}
+
+#tab tr {
+    height: 35px;
+    text-align: center;
+}
+
+#tab tr.bg {
+    background: #FFF38F;
+}
+
+#tab tr th {
+    width: 100px;
+}
+
+#tab tr th.cursor {
+    cursor: pointer;
+}
+
+#tab thead tr {
+    background: #E0F2BE;
+}
+
+
+

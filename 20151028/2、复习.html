@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //获取当前元素的上一个哥哥元素节点(需要兼容所有的浏览器)
+    //获取上一个哥哥节点:previousSibling
+    //获取上一个哥哥元素节点:previousElementSibling (IE6~8下不兼容)
+
+    //我们想获取的是curEle的上一个哥哥元素节点
+    //    function prev(curEle) {
+    //        //检测previousElementSibling是否兼容:就看它是否为curEle这个对象的属性，是的话代表兼容，不是的话代表不兼容
+    //        if ("previousElementSibling" in curEle) {
+    //            return curEle.previousElementSibling;
+    //        }
+    //        //不兼容的情况下:首先获取上一个哥哥节点，判断是否为元素节点，只要不是元素节点，则继续向上查找
+    //        var pre = curEle.previousSibling;
+    //        while (pre && pre.nodeType != 1) {
+    //            pre = pre.previousSibling;
+    //        }
+    //        return pre;
+    //    }
+
+
+    //in: attr in obj ->检测某一个属性是否属于这个对象(既可以是公有的也可以是私有的属性),例如：
+    //    var obj = {name: "王爱芳", age: 20, dec: "今天迟到了~~"};
+    //    console.log("name" in obj);//-->true
+    //    console.log("smile" in obj);//-->false
+
+
+    //我想删除数组中的最后一项，至少写出两种办法
+    //    var ary = [12, 23, 34, 45, 56];
+    //    ary.pop();
+    //    ary.length--;
+    //    ary.splice(ary.length - 1, 1);
+
+    //我想在数组的末尾增加一个元素，至少写出两种办法
+    //    var ary = [12, 23, 34, 45, 56];
+    //    ary.push(100);
+    //    ary[ary.length]=100;
+    //    ary.splice(ary.length, 0, 100);
+
+    //基于原来的数组复制一份一模一样新的数组，不考虑原有数组是否改变的情况，请写出至少三种方案
+    //    var ary = [12, 23, 34, 45, 56];
+    //    ary.slice(0);
+    //    ary.concat();
+    //    ary.splice(0);
+
+    //    var ary = [12, 23, 34, 45, 56];
+    //    ary.sort(function (a, b) {
+    //        return a - b;
+    //    });
+
+    //    var ary = [12, 23, 34, 45, 56];
+    //    ary.slice(n-1,m);
+
+
+    //    var ary = [12, 23, 23, 12, 24, 34, 34, 23, 34, 5, 21, 2];
+    //
+    //    var newAry = ary.slice(0);//-->不改变原来的数据，那么我就克隆一份和原来一模一样的操作
+    //    var obj = {};
+    //    for (var i = 0; i < newAry.length; i++) {
+    //        var item = newAry[i];
+    //        if (obj[item] == item) {
+    //            newAry[i] = newAry[newAry.length - 1];
+    //            newAry.length--;
+    //            i--;
+    //            continue;
+    //        }
+    //        obj[item] = item;
+    //    }
+    //    obj = null;
+    //
+    //    var temp = null;
+    //    for (var i = 0; i < newAry.length - 1; i++) {
+    //        for (var j = 0; j < newAry.length - 1 - i; j++) {
+    //            if (newAry[j] < newAry[j + 1]) {
+    //                temp = newAry[j];
+    //                newAry[j] = newAry[j + 1];
+    //                newAry[j + 1] = temp;
+    //            }
+    //        }
+    //    }
+    //
+    //    console.log(newAry, ary);
+
+
+    function getRandom() {
+        var n = Number(arguments[0]), m = Number(arguments[1]);
+        //1、如果传递进来的n或者m有一个不是有效的数字，我们就返回[0-1)之间的随机小数
+        if (isNaN(n) || isNaN(m)) {
+            return Math.random();
+        }
+        //2、如果我们传递的值n比m都大了，让两者的值交换
+        if (n > m) {
+//            var temp = n;
+//            n = m;
+//            m = temp;
+            //在不使用第三个变量的情况下，如何实现交换?
+            n = n + m;
+            m = n - m;
+            n = n - m;
+        }
+        return Math.round(Math.random() * (m - n) + n);
+    }
+
+    //在不使用第三个变量的情况下，如何实现交换?
+    //    var a = 12;
+    //    var b = 13;
+    //    a = a + b;//把两个值放在一起 -->a=25
+    //    b = a - b;//在两个数的和的基础上把原来b的值减去，就是原来a的值，也是我们给b赋值的最新值 -->b=12
+    //    a = a - b;//在两个数和的基础上减去现有b的值，就是现有a的值 -->a=13
+</script>
+</body>
+</html>

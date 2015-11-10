@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //1、预解释(变量提升):在当前作用域下，JS代码执行之前，浏览器首先会把所有带var和function关键字的进行提前的声明或者定义
+    //var num = 12;
+    //声明(declare): var num;  -->声明的时候没有赋值，我们的默认值是undefined
+    //定义(defined): num=12;
+
+    //2、带var和带function的预解释不一样:
+    //var:在预解释的时候,只声明未定义(只有代码执行的时候才会完成赋值定义)
+    //function:在预解释的时候,声明和定义一起完成了(当代码在执行到定义的那一块的时候就不用管了)
+
+    //全局作用域下的预解释：var num; fn=xxxfff000; (fn函数里面的此时都还是一堆字符串呢，所以全局预解释的时候，是不管函数里面的-->只有当函数执行，里面的字符串变为代码的时候才会进行里面的预解释)
+    //    console.log(num);//-->undefined
+    //    var num = 12;//-->num=12
+    //    function fn() {//21~25都是fn定义的部分，但是在预解释的时候已经完成了，所以我们直接的跳过即可
+    //        console.log(num);//-->undefned
+    //        var num = 13;
+    //        console.log(num);//-->13
+    //    }
+    //    fn();
+    //    console.log(num);//-->12
+
+
+    //3、带var和不带var的区别?
+    //    console.log(num);//-->undefined
+    //    var num = 12;
+    //    console.log(num);//-->12
+
+    //    console.log(num);//-->Uncaught ReferenceError: num is not defined 错误就是变量不存在  (JS中的错误机制：上面的代码执行报错(浏览器的异常信息)，下面的代码都不在执行了)
+    //    num = 12;
+    //    console.log(num);
+
+    //以下的区别只对全局作用域下的全局变量起到作用
+    //var num=12; -->一方面是定义了一个全局的变量,另外一方面也相当于给window增加了一个属性num
+    //num=12; -->相当于给window增加了一个属性num -->window.num=12;
+    //    var num = 12;
+    //    console.log(num);//-->12
+    //
+    //    num = 12;
+    //    console.log(num);//-->12
+
+
+    //4、关于私有作用域中的变量
+    //    console.log(num);//-->undefined
+    //    var num = 12;
+    //    function fn() {
+    //        console.log(num);//-->输出全局作用域下num变量的值12
+    //        num = 13;//-->把全局下的num变量的值修改为13
+    //        console.log(num);//-->输出全局作用域下num变量的值13
+    //    }
+    //    fn();
+    //    console.log(num);//-->输出全局作用域下num变量的值13
+
+
+    //    function fn() {
+    //        console.log(num);//-->Uncaught ReferenceError: num is not defined
+    //        num = 13;
+    //        console.log(num);
+    //    }
+    //    fn();
+    //    console.log(num);
+
+
+    //    function fn() {
+    //        num = 13;//-->num不是私有的变量，则向上一级查找，发现全局也没有，在window下增加了一个num的属性名，属性值是13
+    //        console.log(num);//-->window.num 13
+    //    }
+    //    fn();
+    //    console.log(num);//-->window.num 13
+
+
+    //总结：
+    //1、预解释只发生在当前的作用域下
+    //2、如何区分私有的变量?
+    //在私有作用域中声明的变量(函数)、形参，有且只有这两种情况下是私有的变量 -->只有在私有作用域中带var的或者形参才是私有的变量
+    //在一个函数中我么遇到一个变量，按照上述的规律看是否为私有的，如果是私有的，那么当前函数体中此变量和外面没有任何的关系，是不同的变量
+    //3、在一个私有作用域中发现一个非私有的变量，我们往它的上一级作用域进行查找，如果是上级的，则用上级的变量，如果上级也没有，则继续向上查找...一直找到window为止
+    //4、函数执行形成一个私有的作用域，保护里面私有的变量不受外界的干扰，我们把函数的这种保护机制-->"闭包"
+
+    //思考题：如何区分上一级作用域
+
+
+    function fn1() {
+        var num = 13;
+
+        function f() {
+            console.log(num);
+        }
+        f();
+
+        return f;
+    }
+
+    var num = 12;
+    var aa = fn1();
+    aa();
+
+    function fn2() {
+        var num = 14;
+        var bb = fn1();
+        bb();
+    }
+    fn2();
+
+
+</script>
+</body>
+</html>

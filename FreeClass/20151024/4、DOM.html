@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DOM</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100px;
+            background: #11c900;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1" class="box"></div>
+
+<script type="text/javascript">
+    //DOM:document object model 文档对象模型:提供了JS操作页面上元素的属性和方法
+    //DOM相当于我们的家庭族谱图，在这里描述了一个页面中所有元素之间的关系，提供给我们获取元素的方法、描述关系的属性、操作元素的方法、获取元素信息的属性
+
+    //1、JS中获取元素的方法
+    //1)document.getElementById 通过元素的ID来获取当前的元素
+    //document是它的上下文，并且上下文只能是document
+    //IE6~7浏览器中会把表单元素的name当做ID来使用
+    //IE6~7浏览器中不区分ID的大小写
+    //如果ID冲突了，只获取第一个
+
+    //2)context.getElementsByTagName 通过元素的标签名来获取一组元素
+    //这个方法的上下文可以自己来指定
+    //获取的是一个元素集合(HTMLCollection)，也是一个类数组
+
+    //3)document.getElementsByName 通过元素的name属性的中获取一组元素
+    //上下文只能是document
+    //在IE浏览器中只对表单元素起作用(只能通过表单元素的name获取一组表单元素)-->这个方法就是用来处理表单元素的
+
+    //4)
+    // document.documentElement 获取整个HTML
+    // document.body 获取整个body
+
+    //应用:我想获取当前浏览器屏幕的宽和高?(兼容所有的浏览器)
+    //顺序不能乱-->用JS将一个元素放在屏幕的正中间位置
+    //    var curW = document.documentElement.clientWidth || document.body.clientWidth;
+    //    var curH = document.documentElement.clientHeight || document.body.clientHeight;
+    //    var curLeft = (curW - 100) / 2;
+    //    var curTop = (curH - 100) / 2;
+    //    var oDiv = document.getElementById("div1");
+    //    oDiv.style.left = curLeft + "px";
+    //    oDiv.style.top = curTop + "px";
+
+    //5)context.getElementsByClassName 在指定的上下文中，通过元素的class样式的值来获取一组元素
+    //获取的也是一个HTMLCollection元素集合
+    //此方法在IE6~8下不兼容(正式课中我们重点要处理兼容的一个方法)
+
+    //<div id="div1" class="box"></div> 我想获取当前的这个元素
+    //a、document.getElementById("div1");
+    //b、document.getElementsByTagName("div"); 但是我们获取的是一个集合，如果想获取到当前的这一个元素，还需要在集合中通过索引获取到指定的某一个才可以-->document.getElementsByTagName("div")[0];
+    //c、document.getElementsByClassName("box")[0];
+
+    //6)如果不需要考虑IE6~8的兼容性(或者在移动端开发中)，我们可以使用万能获取的方法
+    //context.querySelector() 获取的是一个元素对象(有多个获取的是第一个)
+    //context.querySelectorAll() 获取的是一个元素集合
+
+    //<div id="div1" class="box" name='zhufeng'></div> 我想获取当前的这个元素
+    //css常用选择器：#id、.类名、标签名、*、select1,select2...(集合选择器)、p>a(子代选择器)、p a(后代选择器)、input[type='text'] 属性选择器...
+    //    document.querySelector("#div1");
+    //    document.querySelector(".box");
+    //    document.querySelector("div");
+    //    document.querySelector("div[name='zhufeng']");
+    //    document.querySelector("body div");
+
+
+</script>
+</body>
+</html>

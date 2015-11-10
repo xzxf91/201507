@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    oDiv.style.width = "200px";
+    oDiv.style.height = "200px";
+    oDiv.style.backgroundColor = "green";
+
+    //1、我们定义一个变量，把我们每一次获取的元素存进去
+    //var 变量名 = 值;  把值赋值给这个变量-->变量就是用来存储值的和代表一个值的
+    //=:在JS中是赋值的意思，把=右边的值赋值给=左边(=右边不管写的什么，其实都应该是值)
+    //var num = 12;
+    //var num2 = num;//把num变量存储的值赋值给我们的num2-->num2=12
+
+    //2、在给变量设置名字的时候，需要遵循一个命名的规范
+    //1)严格区分大小写
+    //下面是不同的两个变量
+    //    var num = 12;
+    //    var Num = 12;
+
+    //2)使用"驼峰命名"法
+    //命名的时候我们尽量使用英文单词的组合来进行命名，并且保持名字的可读性
+    //第一个单词的首字母小写，其余每一个有意义的单词的首字母大写
+    //我们可以使用 数字、字母、下划线、$ 来进行命名，但是数字不能做为开头
+    //var studentInfo = "";
+    //var personInfo1 = "";
+    //var personInfo2 = "";
+    //var _studentInfo = "";//一般情况下开头加_的都默认代表公共变量
+    //var $studentInfo="";//一般情况下开头加$的都默认代表是jQuery变量
+
+    //3)不能使用关键字和保留字命名
+    //关键字:在JS中有自己的特殊意义的单词，例如:var就是关键字
+    //保留字:未来可能会成为关键字的
+    //这个知识没有那么重要，但是面试经常的问，会理所应当，不会不可饶恕
+    //第一天免费课教材-->第五页和第六页
+
+    //3)JS中的变量是松散类型的-->可以存储任何的数据类型
+    //JS中的数据类型?
+    //A、基本数据类型(值类型)
+    //number、string、boolean、null、undefined
+    //JS中用''或者""包起来的都是字符串，不管字符串里面的内容是啥，例如："12"不是number而是string
+
+    //B、引用数据类型
+    //object(对象数据类型):{}对象  []数组  /^$/正则  ...
+    //function(函数数据类型)
+
+    //4)这么多的数据类型该如何的来检测
+    //A、typeof 用来检测数据类型的运算符 (免费课)
+    //B、instanceof 用来检测实例是否属于某一个类(constructor)
+    //C、Object.prototype.toString.call() 这个是最常用的检测数据类型的方式
+
+    //typeof value -->检测这个值的数据类型 -->返回的结果:首先是一个字符串,然后字符串中包含了我们的数据类型信息 -->"number"、"string"、"boolean"、"undefined"、"object"、"function"
+    //    var num = 12;
+    //    console.log(typeof num);
+    //局限性：
+    //1)typeof null --> "object"
+    //2)不能具体的检测出对象、数组、正则...等这些数据类型，typeof []-->"object"  typeof /^$/ -->"object"  ...
+
+
+    //BAT经典的面试题：
+    console.log(typeof typeof typeof typeof [12, 23]);
+    //typeof [12, 23] -->"object"
+    //typeof "object" -->"string"
+    //typeof "string" -->"string"
+    //typeof "string" -->"string"
+    //两个及以上typeof同时检测数据类型的时候，由于typeof返回的结果首先是一个字符串，其次才包含对应的数据类型，所以最后的结果永远是"string"
+
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>预解释是一种毫无节操的机制</title>
+</head>
+<body>
+<script type="text/javascript">
+    //in:检测某一个属性是否属于这个对象(既可以检测私有的属性,也可以检测公有的属性) --> attr in obj
+
+    //1、不管条件是否成立，在预解释的时候，判断体中的带var和function的都要进行预解释
+    //    //window下的预解释: var a; -->a=undefined  我们在全局作用域下声明的变量不仅仅是全局变量，也相当于给window增加了一个叫做"a"的属性名
+    //    if (!("a" in window)) {//"a" in window ->true 取反后条件不成立，那么里面的给a赋值的代码也不会在执行
+    //        var a = "珠峰培训";
+    //    }
+    //    console.log(a);//-->undefined
+
+
+    //2、预解释只发生在"="的左边，右边的是值，是不进行预解释的
+    //    fn();//-->由于预解释的时候就已经完成了函数的声明+定义，所以在页面中的任何位置都可以执行fn这个函数
+    //    function fn() {
+    //        console.log("ok");
+    //    }
+
+    //    //预解释:var fn;
+    //    console.log(fn);//-->undefined
+    //    //fn(); -->Uncaught TypeError: fn is not a function fn不是一个函数
+    //    var fn = function () {
+    //        console.log("no");
+    //    };
+    //    console.log(fn);//-->匿名函数本身
+
+    //对于匿名函数中的函数表达式来说，我们只有在赋值的下面才能执行对应的函数 ，所以在真实的项目中，我们一般都是用函数表达式来定义函数
+
+    //3、自执行函数在预解释的时候是不进行的
+    //function是不进行预解释的，当代码执行到这的时候，我们定义和执行一起完成即可
+    //    ;(function (num) {
+    //       //自执行函数执行也会形成一个私有的作用域:形参赋值;预解释;代码执行;形成的私有作用域销毁;
+    //    })(100);
+
+
+    //匿名函数：
+    //1)函数表达式-->把函数定义的部分产生的内存地址当做值赋值给我们的一个变量(某一个元素的事件)
+    //    var fn = function () {};
+    //    oDiv.onclick=function(){};
+    //    //给一个元素的某一个事件类型绑定一个方法:
+    //    //当代码执行到上面行的时候，首先开一个空间(地址:xxxfff000)，把匿名函数中的代码当做字符串存进去，然后把地址赋值给我们的onclick -->oDiv.onclick=xxxfff000;
+    //    //当我们触发点击事件的时候,首先通过xxxfff000找到对应的函数，并且让函数执行
+
+    //2)自执行函数-->定义和执行的两部分一起完成了
+    //    function(num){}(100); 定义完成立即执行，并且给形参num赋值为100 -->这样写是不符合语法的，如何的处理呢?
+    //前面加;的作用就是防止上面的代码结束不加;
+    //    ;(function (num) {
+    //
+    //    })(100);
+    //    ~function(num){}(100);
+    //    !function(num){}(100);
+    //    +function(num){}(100);
+    //    -function(num){}(100);
+
+
+    //4、预解释的时候，如果遇到名字重复了，不会重新的声明，但是会重新的进行定义
+    //变量的名字和函数的名字相同也算作冲突
+    //    var fn = 12;//-->window.fn=12;
+    //    function fn() {
+    //
+    //    }//-->window.fn=xxxfff000
+
+    //    fn(); -->2
+    //    function fn(){console.log(1);}
+    //    fn(); -->2
+    //    var fn=13;
+    //    fn(); -->报错:fn is not a function
+    //    function fn(){console.log(2);}
+    //    fn();
+
+
+    //5、在私有作用域中的预解释
+    //1)函数体中return下面的代码是不在执行的了，但是如果当中存在var 或者 function是要进行预解释的
+    //2)函数体中return后面的代码,是我们要返回的值，它是一个值，所以不参加预解释
+    //    function fn() {
+    //        console.log(num);
+    //        return function () {//当执行到return的时候，我们开一个新的堆内存，并且把function这个函数对应堆内存的地址返回
+    //        };
+    //        //下面的两行代码不执行，但是预解释的时候，需要声明一个私有变量num，在函数体中出现的num变量都是私有的变量
+    //        var num = 13;
+    //        console.log(num);
+    //    }
+    //    fn();
+
+    //综述：自从学了预解释，从此节操是路人
+</script>
+</body>
+</html>

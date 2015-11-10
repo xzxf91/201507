@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function fn() {
+        var total = 0;
+        total += 10;
+        console.log(total);
+    }
+    fn();
+
+    //函数也是引用数据类型的
+    //1)开一个新的存储的空间，有一个16禁止的地址，我们假设为xxxfff000
+    //2)把函数体中的代码当做"字符串"存储到这个空间当中-->存储一些字符串没啥用，所以我们说函数只定义不执行是没有任何的意义的
+    //3)把我们的地址赋值给我们的函数名 fn=xxxfff000
+
+    //函数执行
+    //1)当函数执行的时候，首先会提供一个新的环境，并且让定义时候存储的字符串,变为有意的代码从上到下执行
+
+
+
+</script>
+</body>
+</html>

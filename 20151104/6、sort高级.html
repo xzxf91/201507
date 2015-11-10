@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //一维数组:数组中的每一项都是基本数据类型的值
+    //    var ary = [12, 13, 10];
+    //    ary.sort(function (a, b) {
+    //        //a=12 b=13  a-b=-1
+    //        //a=13 b=10  a-b=3
+    //        return a - b;
+    //    });
+
+
+    //多维数组:
+    //二维数组
+    var ary = [
+        {name: "程明杰", age: "17岁"},
+        {name: "李鑫", age: 27},
+        {name: "王亚静", age: 22},
+        {name: "信永亮", age: 25},
+        {name: "刘影", age: 18}
+    ];
+    //思考题:把数组按照每一项的年龄的大小进行排序
+    //    ary.sort(function (a, b) {
+    //        //console.log(a, b);
+    //        //a代表的是数组的当前项，b代表的是当前项的后一项
+    //
+    //        //如果返回值是一个>0的数，则a和b交换位置；如果是<=0不进行任何的处理
+    //        return parseFloat(a.age) - parseFloat(b.age);
+    //    });
+
+    //思考题:把数组按照每一项的姓名进行排序
+    ary.sort(function (a, b) {
+        //localeCompare按照要比较的字符串的首字母在26个字母表中的顺序来判断的,例如：
+        //"程明杰".localeCompare("李鑫") -->-1
+        //"周啸天".localeCompare("李鑫") -->1
+        return a.name.localeCompare(b.name);
+    });
+    console.log(ary);
+</script>
+</body>
+</html>

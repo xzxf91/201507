@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 40px;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -150px 0 0 -150px;
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            cursor: pointer;
+            background: #ffbc6c;
+            /*以下是css3中增加的样式效果*/
+            /*1、盒子圆角 IE6~8下不兼容*/
+            border-radius: 50%;
+            /*2、盒子阴影 IE6~8下不兼容*/
+            /*box-shadow:内阴影还是外阴影(不写是外,写inset是内)、x轴偏移、y轴偏移、阴影的模糊半径、阴影的扩展半径、阴影的颜色*/
+            box-shadow: 5px 5px 20px 0 #11c900;
+            /*3、背景颜色 linear-gradient线性颜色渐变 radial-gradient径向渐变*/
+            /*background: -webkit-linear-gradient(bottom left, #ffbc6c, #11c900, #E0F2BE);*/
+            background: -webkit-radial-gradient(#ffbc6c, #FFE0E9, #E0F2BE);
+        }
+    </style>
+</head>
+<body>
+<div id="div1">0</div>
+
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+
+    //1、全局变量计数的方式：利用了全局作用域不销毁的原理，每一次点击的时候都让全局的变量i进行累加，把累加后的结果重新的赋值给我们的oDiv
+    //问题：在项目中为了防止全局变量之间的冲突，在严格的开发的团队中是禁止使用全局变量的
+    //    var i = 0;
+    //    oDiv.onclick = function () {
+    //        this.innerHTML = ++i;
+    //    };
+
+    //2、自己创建一个不销毁的私有的作用域，把我们需要计数的变量定义为不销毁的私有变量实现累加效果
+    //-->研究选项卡循环绑定点击事件的时候用闭包的方式解决的原理和代码
+    //    oDiv.onclick = (function () {
+    //        var i = 0;
+    //        return function () {
+    //            this.innerHTML = ++i;
+    //        }
+    //    })();
+
+    //    ~function () {
+    //        var i = 0;
+    //        oDiv.onclick = function () {
+    //            this.innerHTML = ++i;
+    //        };
+    //    }();
+
+    //4、每一次给oDiv赋值的时候，只需要知道上一次的值是多少，在上一次基础上加1即可
+    //    oDiv.onclick = function () {
+    //        //每一次点击首先获取oDiv原来的innerHTML值(string)，然后把其转化数字，在基础上在加1
+    //        this.innerHTML = Number(this.innerHTML) + 1;
+    //    };
+
+    //5、自定义属性的方式(最优方式)
+    //把需要累加的值存储到我们元素的自定义属性中，每一次点击的时候只需要在从新的获取自定义属性的值，并且在基础上+1即可，不要忘记随时更改自定义属性的值
+    oDiv.num = 0;
+    oDiv.onclick = function () {
+        this.innerHTML = ++this.num;
+    };
+</script>
+</body>
+</html>

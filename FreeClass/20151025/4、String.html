@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>String</title>
+</head>
+<body>
+<script type="text/javascript">
+    //var str = "zhu feng pei xun 2015珠峰";
+    //字符串是由多个字符组成的(空格、回车、特殊符号都可以是它的一个字符)，每一个字符都有一个自己的位置
+    //有索引的，从0开始 str[0]-->z
+    //str.length 代表一共有多少个字符
+    //一个汉字也是一个索引，代表的是一个字符
+
+    //一系列操作字符串的方法
+    //由于字符串是基本数据类型的，我们以下的所有方法都不会对原有的字符串产生影响
+    //1、
+    // charAt(index):按照索引获取指定位置的字符
+    // charCodeAt:按照索引获取指定位置的字符对应的Unicode编码值(ASCII)
+    //console.log(str.charCodeAt(0));
+
+    //2、关于字符串截取的
+    //substr(n,m):从索引n开始截取m个字符
+    //substring(n,m):从索引n开始找到索引m处(不包含m)，把找到的截取
+    //slice(n,m):和substring用法一样 -->slice可以支持以负数作为索引(长度+索引)，而substring不支持
+    //以上三个如果只出现一个n，都是截取到末尾
+    //var str = "zhu feng pei xun 2015珠峰";
+    //console.log(str.substring(2));
+
+    //3、
+    //split(字符):把字符串按照指定的字符进行拆分，拆分出来的每一项都是数组的每一项-->和数组中的join对应
+    //    var ary = [12, 23, 34, 45];
+    //    var str = ary.join("+");//"12+23+34+45"
+    //
+    //    var str2 = "12+23+34+45";
+    //    console.log(str2.split("+"));//["12", "23", "34", "45"]
+
+    //4、是不存在兼容问题的,数组中的这个两个方法在IE6~8下不兼容
+    // indexOf:获取字符在字符串中第一次出现位置的索引
+    // lastIndexOf:获取字符在字符串中最后一次出现位置的索引
+    //如果没有找到这个字符，返回的值是-1，而我们也可以通过这个来判断字符串中是否包含这个字符
+    //    var timeStr = "2015-10-25 15:3:24";
+    //    if (timeStr.indexOf("@") > -1) {
+    //        //包含这个"@"
+    //    }
+    //    var n = timeStr.indexOf(" ");
+    //    console.log(n);//-->10
+
+
+    //    //分别想把年、月、日、小时、分钟、秒都获取到
+    //    var timeStr = "2015-2-25 15:3:8";
+    //    //1)获取" "对应的索引
+    //    var n = timeStr.indexOf(" ");
+    //    //2)以索引为分界线，分别的获取我们左右两边的字符串 "2015-10-25"、"15:3:24"
+    //    var leftStr = timeStr.substring(0, n);
+    //    var rightStr = timeStr.substring(n + 1);
+    //    //3)在按照指定的字符(左边按照- 右边按照:)把字符串拆分成一个数组
+    //    var leftAry = leftStr.split("-");
+    //    var rightAry = rightStr.split(":");
+    //    //4)得到我们想要的字符串(不足10的数字，我们在之前给补充一个0)
+    //    function addZero(value) {
+    //        return value < 10 ? "0" + value : value;
+    //    }
+    //    console.log(leftAry[0] + "年" + addZero(leftAry[1]) + "月" + addZero(leftAry[2]) + "日 " + addZero(rightAry[0]) + "时" + addZero(rightAry[1]) + "分" + addZero(rightAry[2]) + "秒");
+    //    //-->"2015年02月25日 15时03分08秒"
+
+
+    //5、
+    //replace(old,new):把老字符替换成新字符，在不使用正则的情况下，我们每一次执行replace只能替换一个
+    //replace支持用正则进行匹配替换，还支持高级的替换法则(正式课第二周周日我们详细的来讲)
+    //    var str = "珠峰培训2015杨帆起航~~珠峰培训2016蓄势待发~~";
+    //    //var newStr = str.replace("珠峰培训", "EverstTraining").replace("珠峰培训", "EverstTraining");
+    //    var newStr = str.replace(/珠峰培训/g, "EverstTraining");
+    //    console.log(newStr);
+
+    //6、match:需要和正则结合到一起来用，捕获正则匹配的内容
+
+    //7、
+    //toUpperCase:字符串中所有的字母变大写
+    //toLowerCase:字符串中所有的字母变小写
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #box {
+            margin: 20px auto;
+            padding: 15px;
+            width: 50%;
+            border: 1px dashed #ccc;
+        }
+
+        #box li {
+            height: 35px;
+            line-height: 35px;
+        }
+    </style>
+</head>
+<body>
+<ul id="box">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script type="text/javascript">
+    var box = document.getElementById("box");
+    var oLis = box.getElementsByTagName("li");//在box下，通过元素的标签名获取多个元素
+    //oLis.length 一共获取的个数
+    //oLis[0] 获取集合中的第一个li   oLis[4] 获取集合中的第五个li  0/4代表的是哪一个li，我们把这个数字称之为索引
+
+    for (var i = 0; i < oLis.length; i++) {
+        //第一次循环 i=0  -->oLis[0].style....
+        //第二次循环 i=1  -->oLis[1].style....
+        //...
+        //第十次循环 i=9  -->oLis[9].style....
+        //oLis[i].style.backgroundColor = "red";
+
+        //i%2 i的值除以2取余数(i 膜 2) 0(i是偶数)/1(i是奇数)
+
+        if (i % 2 == 0) {//i是偶数代表奇数行
+            oLis[i].style.backgroundColor = "red";
+        } else {
+            oLis[i].style.backgroundColor = "green";
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            border: 10px solid green;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" href="test.css"/>
+</head>
+<body>
+
+<!--行内引入JS-->
+<div id="div1" style="width: 100px;height: 100px;background: red;" onclick="alert('欢迎大家来珠峰培训~~')"></div>
+
+<!--内嵌式引入JS-->
+<script type="text/javascript">
+    //alert:在浏览器中弹出一个窗口，显示我们要输出的内容
+    //console.log在控制台输出我们想要的内容  控制台:F12打开  谷歌浏览器Console页卡中就可以看到我们输出的内容了
+    console.log("站在台风口上，猪都能飞起来~~");
+</script>
+
+<!--外链式引入JS-->
+<script type="text/javascript" src="test.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body id="oBody" style="background-color: white;">
+
+<script type="text/javascript">
+    //当我们点击body的时候，判断body的背景颜色，如果是白色，我们让其变为黑色，如果是黑色，我们让其变为白色
+
+    //1、想要操作谁，就先获取谁
+    //var body = document.getElementById("oBody");
+    var body = document.body;//获取整个body元素
+
+    //2、给body绑定点击的事件，当点击的时候执行我们的操作
+    //给元素在JS中绑定点击事件，当我们点击的时候会执行后面对应的方法[function]
+    body.onclick = function () {
+        //console.log(1); //-->遇到问题后，我们首先看一下有没有触发我们的点击操作，如果在控制台输出了1，那么说明点击触发了只是没有达到我们最终的目，那么我们继续向下找问题的原因
+
+        //3、获取body此时的背景颜色的值，然后进行判断:如果是white，我们让其变为black，如果是black，我们让其变为white
+        var bg = body.style.backgroundColor;
+
+        //console.log(bg);//-->把我们获取的背景颜色的中输出，看一下是不是我们想要的，现在我们发现，获取的内容是空，说明没有获取到对应的背景颜色值-->在样式表中我们编写了 background-color: white; 发现还是获取不到，只有在行内样式上写才可以获取到-->body.style.backgroundColor只能获取元素的行内样式(不管你在样式表中是否设置了，只要没有在行内上写,我们都是获取不到的)
+
+        if (bg === "white") {
+            body.style.backgroundColor = "black";//设置行内的背景颜色值为black
+        } else {
+            body.style.backgroundColor = "white";
+        }
+    };
+
+
+    //思考题扩展：
+    //1、我们现在使用的是white、black，我们把这个值换成#fff、#000该怎么实现-->上面的代码是实现不了的，为啥？怎么解决？
+    //或者颜色换成pink在看看效果
+
+    //2、为啥设置的时候换成 bg = "black"; 的时候，就实现不了呢?
+</script>
+</body>
+</html>

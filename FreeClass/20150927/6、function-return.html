@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //0和null的区别:0占内存，null不占内存的-->0相当于挖坑了但是啥都没种，null相当于连坑都没挖
+    function sum() {
+        var total = null;
+        for (var i = 0; i < arguments.length; i++) {
+            var cur = Number(arguments[i]);
+            !isNaN(cur) ? total += cur : null;
+        }
+        return total;//-->把函数中total这个变量存储的值55返回-->return 55;
+        //console.log("我是return下的代码~~");
+    }
+    var res = sum(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);//在函数中我们通过return返回了55，那么sum整体执行完成的结果就是55-->我们把这个值赋值给res这个变量，那么我们也认为，是把函数中的total的值赋值给了res
+    console.log(res);
+
+    var total = sum(10, 20);
+    console.log(total);//即使外面也叫作total，但是函数中的是私有的，和外面的没有任何的影响
+
+    //console.log(total);//Error:total is not defined --> total这个变量不存在
+    //由于函数自己的保护机制，我们在函数的外面是无法直接的拿到total的，需要提供一个出口--->return
+    //如果函数没有写return,那么我们在外面获取的返回值默认是undefined
+    //在函数体中，只要遇到了return，那么后面的代码都不在执行了(和循环中的continue或者break类似)
+</script>
+</body>
+</html>

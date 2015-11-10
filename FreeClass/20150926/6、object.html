@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //object：对象数据类型
+    //    var obj = {};
+    //    var ary = [];
+    //    var reg = /\d+/;
+    //1、每一个对象数据类型都是由多组属性名和属性值组成的(也可以说是由多组键值对(key:value)组成的)
+    //一个对象中的属性名是唯一的，不能重复，如果重复了，后面的会把前面的覆盖掉
+    //    var personInfo = {
+    //        name: "王雪飞",
+    //        age: 18,
+    //        height: "175cm",
+    //        age: 19
+    //    };
+    //2、除了在{}中直接的把属性名和属性值进行编写以外，我们还可以在外面增加、修改、删除属性名和属性值
+    //personInfo是一个变量名，但是由于存储的是一个对象数据类型，所以也可以叫做对象名
+    var personInfo = {};
+    personInfo.name = "葛万红";//给personInfo增加一个叫做name的属性名，属性值是"葛万红"-->.在这里可以理解为"的"-->personInfo的name是xxx
+    personInfo["age"] = 17;//千万不要忘记给age加引号
+
+    //之前没有算增加属性名，有的话就是修改age属性对应的属性值
+    personInfo.age = 16;
+    personInfo["age"] = 15;
+
+    //删除有两种办法：假删除、真删除
+    //假删除:让其属性值为null
+    //personInfo.age = null;
+    //真删除(彻底删除):
+    //delete personInfo.age;
+
+    //获取:写=是赋值，不写就是获取值
+    //console.log(personInfo.age, personInfo["name"]);//console.log可以同时输出多个内容，中间用","隔开即可
+    //console.dir(personInfo);//console.dir也是在控制台输出，只是比console.log输出的详细一些
+
+    //注意：在一个对象中，我们的属性名是可以为数字的
+    //var obj = {0: "衷诚作", 1: "王雪飞", 2: "葛万红"};
+    //obj.0 不允许的
+    //obj["0"] --> obj[0] 如果是数字属性名可以省略引号
+
+    //3、创建一个对象数据类型的方式
+    //var obj = {};//字面量创建方式
+    //var obj = new Object();//实例创建方式
+    //两种方式创建的结果没有什么区别
+
+    //var num = 7;
+    //var obj = {name: "珠峰"};
+    //基本数据类型和引用数据类型的区别：
+    //1、基本数据类型就是一个简单的数据值，而引用数据类型的相对结构比较的复杂
+    //2、本质区别?
+</script>
+</body>
+</html>

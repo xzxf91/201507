@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            margin: 20px;
+            width: 100px;
+            height: 100px;
+            background: #11c900;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+    //1、createElement 动态创建一个元素标签
+    var oDiv1 = document.createElement("div");
+    oDiv1.id = "div1";
+    oDiv1.className = "box";
+    oDiv1.innerHTML = "我是动态创建的第一DIV";
+
+    //2、appendChild 添加到指定容器的最末尾位置
+    document.body.appendChild(oDiv1);
+
+    //3、insertBefore 把新元素(newEle)添加到指定旧元素(oldEle)的前面
+    // oldEle.parentNode.insertBefore(newEle,oldEle)
+    var oDiv2 = document.createElement("div");
+    oDiv2.id = "div2";
+    oDiv2.className = "box";
+    oDiv2.innerHTML = "我是动态创建的第二DIV";
+    oDiv2.style.backgroundColor = "red";
+    //oDiv1.parentNode.insertBefore(oDiv2, oDiv1);
+    document.body.insertBefore(oDiv2, oDiv1);
+    //如果我们知道容器的话，就没有必要通过parentNode获取了
+
+    //4、removeChild 删除某一个元素
+    document.body.removeChild(oDiv1);
+
+    //5、cloneNode(true/false) 克隆一个元素 true-->把当前元素和它的子子孙孙都克隆  false-->之克隆自己本身，子子孙孙不克隆
+    var oDiv3 = oDiv2.cloneNode(false);
+    oDiv3.id = "div3";
+    oDiv3.style.backgroundColor = "yellow";
+    //document.body.appendChild(oDiv3);
+
+    //6、replaceChild 用newEle把oldEle替换掉
+    //oldEle.parentNode.replaceChild(newEle,oldEle)
+    oDiv2.parentNode.replaceChild(oDiv3, oDiv2);
+
+
+    //7、自定义属性:在某一个操作的时候需要自己的一些值，但是我为了防止现有的环境不影响这个值，我们在之前把需要的值保存在自己的自定义属性上，现在用到的话在拿出来用即可
+    //    oDiv3.index = 100;//存储了，但是没有在HTML的结构上显示 -->我们这样操作的原理是:把oDiv3看做一个对象数据类型的值，然后在其对应的内存空间中增加了一个index的属性名,属性值是100
+    //    console.log(oDiv3.index);
+    //    oDiv3.index = null;
+    //    delete oDiv3.index;
+
+    //setAttribute:设置元素的自定义属性
+    //如果是这样设置的只能使用同系列的方法获取
+    //    oDiv3.setAttribute("index", 100);//可以在HTML结构上显示
+    //    //console.log(oDiv3.index);//-->undefined
+    //    console.log(oDiv3.getAttribute("index"));
+    //    oDiv3.removeAttribute("index");
+
+    //兼容问题:在IE6~8下不兼容下面设置class值
+    //oDiv3.setAttribute("class", "box");
+</script>
+</body>
+</html>

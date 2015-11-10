@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Date</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 24px;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            margin: 50px auto;
+            width: 700px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #FFCCFF;
+            border: 1px dashed #11c900;
+            letter-spacing: 3px;
+        }
+
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    //Date:提供了操作时间的常用方法
+
+    //创建一个时间数据类型-->"object"
+    //获取当前自己电脑的时间(获取客户端的时间)，所以我们不能用这个时间作为重要的参考-->重要的需要和服务器交互来获取(正式课第七周再讲)
+    //    var time = new Date();
+    //    var year = time.getFullYear();
+    //    var month = time.getMonth() + 1;//0-11代表1-12月
+    //    var day = time.getDate();
+    //    var week = time.getDay();//0-6代表周日-周六
+    //    var hour = time.getHours();
+    //    var minute = time.getMinutes();
+    //    var second = time.getSeconds();
+    //    var mSecond = time.getMilliseconds();
+
+    //"2015-2-25 15:3:8" 它是一个普通的字符串，如果也想用时间提供的那些方法-->把字符串转换为时间格式的数据
+    //在IE浏览器中，对于字符串的格式是有要求的
+    //"2015-2-25 15:3:8" (no) --> "2015/2/25 15:3:8" (ok)
+    //还有很多种格式，常用的是上面的那一种，其余的自己回去百度查一下
+    //console.log(new Date("2015/2/25"));
+
+
+    function addZero(val) {
+        return val < 10 ? "0" + val : val;
+    }
+    function showTime(timeStr) {
+        var time = new Date();
+        if (typeof timeStr !== "undefined") {
+            time = new Date(timeStr);
+        }
+        var year = time.getFullYear();
+        var month = time.getMonth() + 1;
+        var day = time.getDate();
+        var week = time.getDay();//0-6
+        var aryStr = "日一二三四五六";//0-6
+        var hour = time.getHours();
+        var minute = time.getMinutes();
+        var second = time.getSeconds();
+        return year + "年" + addZero(month) + "月" + addZero(day) + "日 星期" + aryStr[week] + " " + addZero(hour) + "时" + addZero(minute) + "分" + addZero(second) + "秒";
+    }
+    var oDiv = document.getElementById("div1");
+    oDiv.innerHTML = showTime();
+
+    var timer = window.setInterval(function () {
+        oDiv.innerHTML = showTime();
+    }, 1000);
+</script>
+</body>
+</html>

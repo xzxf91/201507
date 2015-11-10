@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //try、catch、finally 浏览器自带的检测或者捕获到错误信息的机制
+
+    //    console.log(num);//Uncaught ReferenceError: num is not defined ->上面代码报错,默认情况下下面的代码都不在执行了
+    //    console.log("ok");
+
+    //    try {
+    //        console.log(num);//JS执行的代码
+    //    } catch (e) {
+    //        //如果JS执行的代码在执行的过程中报错了，就会自动的转到catch中，执行catch中的代码 e.message->这个里面存储的就是上面代码报错的原因
+    //        console.log(e.message);
+    //    } finally {
+    //        //不管是否报错都会执行这里面的代码，一般是不加的
+    //    }
+    //    //try catch捕获到异常信息后，后面的代码还可以继续执行
+    //    console.log("ok");
+
+    //上面报错了，我不仅捕获异常信息，而且下面的代码还不执行
+    try {
+        console.log(num);
+    } catch (e) {
+        //手动抛出浏览器异常信息
+        throw new Error("当前网络繁忙~~请稍后在试~~");
+//        throw new ReferenceError 引用错误
+//        throw new TypeError 类别错误
+//        throw new RangeError 范围错误
+    }
+    console.log("ok");
+</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //number:正数、零、负数 (小数)
+    //JS中number还包含了一个特殊的值:NaN
+    //1、NaN:not a number 不是一个数，但是属于number类型的，typeof NaN-->"number"
+    //a、数字+undefined=NaN
+    //b、非有效的数学运算，例如:"3px"*3->NaN；"3"*3->9(首先把"3"强制转换成数字3，然后在相乘)
+    //c、把其他非数字类型的值转换为数字类型的时候，会出现NaN
+    //Number():强制(严格)转化为数字类型
+    //Number("2015")->2015  Number("2015年")->NaN
+    //parseInt/parseFloat:非严格转换
+    //从字符串左边开始查找，把所有遇到的有效数字转换为数字，如果一旦遇到一个非有效的数字,则停止继续查找，如果一个有效数字都没有遇到的话，结果是NaN
+    //parseInt("2015年2014")->2015
+    //parseInt("年2014")->NaN
+    //parseFloat可以比parseInt多识别一个小数点
+    //parseInt("13.5px")->13
+    //parseFloat("13.5px")->13.5
+
+    //2、NaN包含了很多值的可能性
+    //NaN==NaN("=="是用来比较左右两边的值是否相等)-->false是不相等的
+    //NaN和任何的值都不相等
+
+    //3、检测一个值是否为有效的数字->isNaN()
+    //true(不是一个有效的数字)、false(是一个有效的数字)
+    //如果检测的值不是number类型的，首先会默认的调用Number()严格转换为number类型的在检测
+    //isNaN("3px")-->isNaN(Number("3px"))-->isNaN(NaN)-->true
+    //isNaN("30")-->false
+
+    //BAT面试题：
+    var num = Number("13.5px");
+    if (num == 13.5) {
+        console.log(13.5);
+    } else if (num == NaN) {
+        console.log(NaN);
+    } else if (typeof num == "number") {
+        console.log("number");
+    } else {
+        console.log("13.5px");
+    }
+    //-->"number"
+
+
+</script>
+</body>
+</html>

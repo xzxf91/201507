@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+
+<script type="text/javascript">
+    //JS控制我们的#div1的背景颜色是红色
+
+    //1、想要操作谁，我们就先获取谁
+    //getElementById:通过元素的ID来获取当前的这个元素
+    //document限定了我们的获取范围-->在整个文档中获取-->document此时就是我们getElementById这个获取方法的上下文(context)
+    //例如：喻彩丽在珠峰毕业后月薪20K，有钱了，请大家去北京饭店吃饭，北京饭店就是我们当前吃饭的范围，这个范围就是我们JS中的上下文
+    //console.dir(document.getElementById("div1"));
+
+    //2、让获取的元素的背景颜色变成红色
+    //"."-->的
+    //让document.getElementById("div1")获取的这个元素"的"行内style样式中 "的"背景颜色 = "green";  -->原理：把元素的行内样式进行修改，从而改变背景颜色
+    /*
+     document.getElementById("div1").style.backgroundColor = "green";
+     document.getElementById("div1").style.border = "5px solid red";
+     document.getElementById("div1").style.cursor = "pointer";
+     */
+
+    //每一次设置都要从新的获取，太麻烦了，如果能够起一个小名，以后直接用小名来操作就好了-->起小名:JS变量
+
+    //变量?
+    //一个可变的量-->JS中的变量就是用来存储一个值，或者代表一个值的
+    //var 变量名 = 值;  定义一个变量(小名)，让其赋值为(代表为)我们等号后面的值
+    // = 是赋值：把=右边的值 赋值给 =左边的变量-->=左边是变量，右边永远都是值
+
+    /*
+     var oDiv = document.getElementById("div1");//把我们获取的元素当做一个值赋值给我们的oDiv这个变量(给我们的#div1这个元素起了个小名叫做oDiv)
+     oDiv.style.backgroundColor = "yellow";
+     oDiv.style.border = "5px solid blue";
+     */
+
+    /*
+     var num1 = 12;
+     var num2 = num1;//=右边永远都是值:把num1这个变量存储的值12赋值给我们的num2 --> num2=12  但是仅仅是赋值而已，num1和num2是没啥关系的
+     num2 = 13;//给num2从新的赋值为13 -->num2=13
+     console.log(num1);//-->12
+     */
+
+    //JS中的变量有一个特点：是松散类型的-->一个变量可以存储任何数据类型的值
+    //var num = 12;
+    //num = "珠峰";
+
+    //JS中到底都有哪些数据类型?
+</script>
+</body>
+</html>

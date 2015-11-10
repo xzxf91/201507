@@ -1,0 +1,33 @@
+1、组长负责把小组每一个成员的作业，统一收上来，发送到1282347298@qq.com邮箱中，最晚周四下班前(18:00)必须发给我
+命名：全日制+第一组+第一周.rar  有特殊情况在邮件备注说明
+
+2、作业
+1)思考题：
+//(5).plus(3).minus(2) -->5+3-2 链式写法 在Number.prototype上扩展plus和minus
+//Array.prototype.slice  ->n,m  n  n或者m是负数索引 n>m...  要求自己在数组的原型上扩展mySlice的方法，实现和内置的slice一模一样的功能(不能使用数组内置的方法，例如：添加不能是用push，只能用this[this.length]=xxx)
+
+2)“珠峰培训正式课作业[第一周].doc”  在我们的今天讲义中
+
+
+本周的视频上传后单独的在通知
+
+3、按照顺序预习
+JS前端课程按照时间分类-->
+
+第二周一:从“第1讲:以面向对象的思想深入理解DOM-2015年第一期”--->"第8讲：求平均分示例和eval-2015年第一期" (五个视频)
+
+第二周一:"JSON基础知识专题第一讲"和"JSON基础知识专题2"
+
+第二周专题:http://www.zhufengpeixun.com/viewer.do?courseId=859485#currentPlaying=1351238
+
+第二周专题:http://www.zhufengpeixun.com/kecheng/detail_859484
+
+第二周二:"2014年JavaScript正则表达式：第一讲正则是干什么的？" -->"2014年JavaScript正则表达式：exec方法的面试题实例"(9个)  正则的教材一定要看
+
+
+
+
+
+
+
+

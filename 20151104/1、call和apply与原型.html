@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //call/apply
+    //Function的原型上定义了两个方法,每一个函数数据类型都是Function这个类的一个实例,每一个函数都可以使用call/apply这个方法了
+    //1)在执行call的时候让前面的函数执行
+    //2)让前面函数中的this变为第一个形参的值
+    //fn.call(obj) 在执行call方法的时候，在call的函数体中我们首先让fn执行，然后再让fn中的this变为obj
+
+    //    Function.prototype.call = function () {
+    //        var _this = arguments[0];//我们想让函数的this变为谁，第一个参数就传递谁 -->obj
+    //        //1)让call前面的函数执行-->fn  call中的this其实就是我们箱操作执行的那个函数fn
+    //        this();//-->fn()
+    //
+    //        //2)让call前面函数中的this变为_this
+    //        //this这个函数-->里面的this关键字变为_this
+    //    };
+    //    //fn.call(obj)
+
+    function fn1() {
+        console.log(1);
+    }
+    function fn2() {
+        console.log(2);
+    }
+    fn1.call(fn2);//先让call方法执行，然后在执行的时候，首先让fn1执行，然后把fn1中的this变为fn2 -->1
+    fn1.call.call.call.call(fn2);//不管写多少个call,总是最后一个call方法执行,fn1.call->就是我们在call执行的时候要执行的函数 -->fn1.call.call.call它执行其实就是相当于 Function.prototype.call执行，并且让它里面的this变为fn2 -->相当于让fn2执行 -->2
+    //fn1.call 现在fn1自己的私有的属性中查找,没有则找Function的原型 -> fn1.__proto__.call 把原型上的call方法拿出来
+    //fn1.call.call.call -->找的其实都是Function原型上的call方法
+
+    Function.prototype.call(fn2);//在执行call的时候，让Function.prototype执行并且让里面的this变为fn2 ->啥都没输出
+    Function.prototype.call.call.call.call(fn2);//-->和第二种情况一样
+</script>
+</body>
+</html>

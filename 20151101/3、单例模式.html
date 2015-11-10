@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>单例模式</title>
+</head>
+<body>
+<script type="text/javascript">
+    //JS中数据类型的发展史:
+    //数据类型值其实就是我们生产生活的资料-->每一个数据值其实都相当于我们的一砖一瓦
+
+    //long long long long ago,js中只有基本数据类型值,如果我们想描述一件事物的话，需要按照下面的方式描述:
+    //    var name = "逄元杰";
+    //    var age = 24;
+    //
+    //    var name = "张俊领";
+    //    var age = 25;
+    //弊端:描述一个整体也是分开描述的(零散)、下面描述的name和age的值会把上面的给覆盖掉(冲突)
+
+    //第一次工业革命开始了-->引入了对象数据类型
+    //作用:
+    //1)分组->把描述同一个事物的所有的属性都放在了一起来描述，每一组都是一个单独的个体(单独的实例)
+    //2)避免冲突->每一个分组中的都是自己私有的，和其余的其他的分组下的不冲突
+    var person1 = {
+        name: "逄元杰",
+        age: 24
+    };
+
+    var person2 = {
+        name: "张俊领",
+        age: 25
+    };
+
+    console.log(person1.name);
+    console.log(person2.name);
+
+    //->我们用以上对象把两个个体实现了分组和独立开，我们说每一个对象都是一个单独的个体/单独的实例--->"单例模式"(就是一个普通的对象)
+    //在单例模式中，我们的person1不仅仅叫做对象名，它有一个新的叫法:"命名空间"
+
+
+    //使用单例模式实现简易的"模块化开发"
+    //"模块化开发"-->团队多个成员间进行协作开发，每个人负责自己的一部分，而我们就需要按照功能把一个页面细分为几部分
+    var searchModel = {
+        check: function () {
+
+        },
+        submit: function () {
+
+        }
+    };
+
+    var login2Model = {
+        check: function () {
+            searchModel.check();//在自己的命名空间中调用其他命名空间下的方法
+        },
+        submit: function () {
+            this.check();//在自己的命名空间中调用自己的方法-->this
+        }
+    };
+    loginModel.submit();
+</script>
+</body>
+</html>

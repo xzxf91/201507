@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--CSS2、内嵌式编写我们的样式-->
+    <style type="text/css">
+        #div1 {
+            background: #ff3333;
+        }
+    </style>
+    <!--CSS3、外链式引入我们的样式文件-->
+    <link type="text/css" rel="stylesheet" href="css/test.css"/>
+    <!--CSS4、导入式引入我们的样式文件-->
+    <style type="text/css">
+        @import "css/test2.css";
+    </style>
+</head>
+<body>
+<!--CSS1、行内设置样式 style='...'-->
+<!--JS1、行内设置JS(强烈不推荐使用，安全性能低)-->
+<div id="div1" style="width: 100px;height: 100px;" onclick="alert('欢迎大家来到珠峰培训~~')"></div>
+
+<!--JS2、内嵌式编写JS脚本-->
+<script type="text/javascript">
+    alert("在珠峰培训，好好学，轻轻松松拿12k+的薪资~~");
+</script>
+
+<!--JS3、外链式编写JS脚本-->
+<script type="text/javascript" src="js/test.js">
+    //在外链式引入中，这里编写的代码都不会起作用，有作用的是test.js中的编写的代码
+    //alert("中华人民共和国好姑娘-喻彩丽");
+</script>
+
+
+<script type="text/javascript">
+    //1、一个网页由三部分组成:
+    //HTML标签:块状标签、行内标签  -->直接写在页面中的标签
+    //CSS层叠样式表  -->可以有四种编写引入的方式
+    //JavaScript脚本 -->可以有三种编写引入的方式
+
+    //onclick:元素标签的点击事件-->当我们点击这个元素标签的时候就会去做一些我们想要做的事情
+    //alert('我们要输出的内容') -->在浏览器中弹出一个提示窗口，里面展示了我们要输出的内容
+
+    //思考题：在script中除了type和src属性外，还有我们的:defer、async
+    //"JavaScript高级程序设计(第三版)"红色皮-->第一章
+
+    //2、三部分的作用:
+    //HTML标签-->搭建页面框架的(盖房子的时候搭框架)
+    //CSS-->盖房子时候的图纸,我们是按照图纸来进行搭建和装修的
+    //JS的作用：
+    //1)操作页面上的元素标签，让其有相关的操作效果:展开、隐藏、移动...
+    //2)数据交互:利用我们的Ajax或者JSONP...等技术，和后台数据进行交互处理，把信息动态的绑定到我们的HTML页面中 -->DHTML(HTML、XHTML)
+    //3)利用浏览器提供的一些方法，操作浏览器:收藏、设为首页、检测浏览器版本信息...
+
+    //JS是一门轻量级的脚本编程语言，它是由三部分组成的：
+    //ECMAScript:JS最核心最基础的部分-->提供了JS的基本语法、命名规范、变量、数据类型、操作语句等基础内容
+    //DOM:document object model 文档对象模型-->提供了JS操作页面上元素标签的方法和属性...
+    //BOM:browser object model 浏览器对象模型-->提供了操作浏览器的属性和方法...
+
+    //常用的编辑器
+    //DW: DreamWeaver
+    //sublime text 3
+    //webStorm 10 (前端开发神器)
+    //hBuilder
+    //对于零基础的平时练习 txt记事本
+</script>
+</body>
+</html>

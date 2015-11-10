@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--toString replace-->
+<!--表格排序-->
+<!--大数据处理-->
+<!--千分符 fn.call.call-->
+<!--转译字符 表达式执行-->
+<!---->
+<div id="div1"></div>
+
+<script type="text/javascript">
+    //window下的预解释:
+    //[声明+定义] fn = xxxfff000
+    //[声明] var fn; (这一步不需要重新的声明了)
+    //[定义] fn = xxxfff111
+    //--> fn = xxxfff111
+    //    fn();
+    //    function fn() {
+    //        console.log(1);
+    //    }
+    //    fn();
+    //    var fn = 13; //带var的只有代码执行的时候才会完成赋值 fn=13
+    //    fn();//->13() Error:fn is not a function
+    //    function fn() {
+    //        console.log(2);
+    //    }
+    //    fn();
+
+    //在Parent这个类中
+    //1)this.xxx=xxx是给这个"类的实例"增加的私有的属性和方法
+    //2)Parent.prototype.xxx=xxx是给这个"类的实例"增加的公有的属性和方法
+    //var p=new Parent; p此时就拥有了x这个私有的属性,而且还可以通过__proto__找到所属类原型上的公有的属性和方法;
+    //    function Parent(a, b, c, d) {
+    //        var num = 12;//这个是把Parent当做普通的函数执行,在形成的私有的作用域中定义的私有变量
+    //        this.num = 100;//这个是给它的实例增加的私有的属性
+    //    }
+    //    Parent.prototype.getX = function () {
+    //        console.log(this.num);
+    //    };
+    //    Parent.num = 2000;//这个是把Parent当做一个普通的对象,然后给它自己增加的一个属性名
+    //    //Parent.name ->当前的函数名
+    //    //Parent.length ->当前函数定义的形参的个数(不管传没传形参值)
+    //    //Parent函数中有一个天生自带的获取参数的集合arguments,arguments.length不管你是否定义了形参,只要你传递了值进来,arguments都可以获取到
+    //    var p = new Parent();
+    //
+    //    function Children() {
+    //        this.x = 200;
+    //    }
+
+    //Children这个子类继承Parent这个父类中的私有的和公有的属性和方法
+    //    function Parent() {this.x = 100;}
+    //    Parent.prototype.getX = function () {console.log(this.x);};
+    //    function Children() {this.x = 200;}
+    //    Children.prototype = new Parent;
+    //    var c = new Children;
+
+
+    //    function Parent() {this.x = 100;this.writeX = function () {}}
+    //    Parent.prototype.getX = function () {console.log(this.x);};
+    //    function Children() {
+    //        //this->Children的实例c
+    //        Parent.call(this);//把Parent当做普通的函数执行,让里面的this变为c ->在执行的时候相当于c.x=100、c.writeX=function...
+    //    }
+    //    var c = new Children;
+    //    var d = new Children;
+    //    console.log(c.writeX === d.writeX);//-->false
+
+
+    //    function Parent() {this.x = 100;this.writeX = function () {}}
+    //    Parent.prototype.getX = function () {console.log(this.x);};
+    //    function Children() {
+    //        var temp=new Parent();
+    //        //temp就是Parent的一个实例:x、writeX、getX
+    //        for(var key in temp){
+    //            this[key]=temp[key];
+    //        }
+    //        temp=null;
+    //    }
+    //    var c = new Children;
+    //    var d = new Children;
+    //    console.log(c.getX === d.getX);
+
+
+    //    function Parent() {
+    //        this.x = 100;
+    //        this.writeX = function () {
+    //        }
+    //    }
+    //    Parent.prototype.getX = function () {
+    //        console.log(this.x);
+    //    };
+    //    function Children() {
+    //        Parent.call(this);
+    //    }
+    //    Children.prototype = new Parent;
+    //    var c = new Children;
+
+
+    function Fn() {
+        this.x=100;
+    }
+    Fn.prototype = new Array;
+    var f = new Fn;
+    //f只是继承了数组中常用的方法,但是不是数组,例如：在梨树上嫁接苹果树,苹果树只是继承使用了梨树的水分和营养,但是长出来的果实还是苹果而不是梨
+    //console.log(f instanceof Fn);//->true
+    //console.log(f instanceof Array);//->true
+    //console.log(f instanceof Object);//->true
+
+    var oDiv=document.getElementById("div1");
+    //oDiv->HTMLDivElement->HTMLElement->Element->Node->EventTarget->Object
+    //只要在这个实例的原型链上的类,用instanceof检测的时候都为true
+    console.log(oDiv instanceof EventTarget);//->true
+
+</script>
+</body>
+</html>

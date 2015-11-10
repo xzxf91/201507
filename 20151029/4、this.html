@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: red;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">我是DIV1</div>
+
+<script type="text/javascript">
+    //    function fn() {
+    //        console.log(this.innerHTML);
+    //    }
+    //    var innerHTML = "我是WINDOW";
+    //    var obj = {
+    //        innerHTML: "我是OBJ",
+    //        eat: fn //把全局函数fn赋值给我们的obj下的fn这个属性名
+    //    };
+    //    fn();//this-->window
+    //    obj.eat();//this-->obj
+
+    //    document.getElementById("div1").onclick = fn;//把fn函数定义的部分赋值给我们的事件，当我么事件触发的时候才会执行fn这个函数 --> 当点击的时候,fn中的this-->div1这个元素
+    //    document.getElementById("div1").onclick = fn();//fn函数先执行，把它的返回值(undefined)赋值给我们的onclick
+
+
+    //    var oDiv = document.getElementById("div1");
+    //    function fn() {
+    //        console.log(this);
+    //    }
+    //    oDiv.onclick = function () {
+    //        //this-->oDiv
+    //        fn();//fn不管在哪执行的和this没关系，就看前面是否有"."，所以fn方法中的this-->window
+    //    };
+    //    //当我点击的时候，执行匿名函数(this-->oDiv)，在匿名函数中又执行了fn，问fn中的this是谁?
+
+
+    //王爱芳去北京饭店吃饭
+    //行为:吃饭 -->function eat
+    //环境:北京饭店 -->上下文 当前行为发生的地点
+    //主体:王爱芳 -->this 当前行为执行的主体
+    //王爱芳.eat() 执行主体是王爱芳  上下文是北京饭店
+    //可以不再同一个地方吃饭，但是执行的主体都是王爱芳-->执行的主体和所在的环境是没有关系的-->this和context是没啥关系的
+
+    //this-->当前行为发生的主体就是this，但是this是谁和这个方法在哪执行的或者在哪定义的都没有半毛钱的关系
+    //如何的区分JS中的this?
+    //1)函数执行，看函数名前面是否有".",有的话"."前面是谁this就是谁,没有的话this就是window
+    //    var person = {
+    //        name: "程明杰",
+    //        eat: function () {
+    //            console.log(this);//-->person
+    //            console.log("人是铁饭是钢，一顿不吃饿得慌~~");
+    //        }
+    //    };
+    //    person.eat();
+
+    //    function fn() {
+    //        function f() {
+    //            console.log(this);//-->window
+    //        }
+    //        f();
+    //    }
+    //    fn();
+
+    //2、自执行函数中的this永远是window
+    //    ~function () {
+    //        console.log(this);//this-->window
+    //    }();
+
+    //    var obj = {
+    //        //把自执行函数的返回值100赋值给obj下的属性名fn-->obj.fn=100
+    //        fn: (function () {
+    //            console.log(this);//window
+    //            return 100;
+    //        })()
+    //    };
+
+    //3、给元素的某一个事件绑定方法的时候，只有事件被触发了才会执行对应的函数，此时函数中的this是当前的元素
+    //oDiv.onclick=function(){
+    //    console.log(this); //this-->oDiv
+    //}
+
+    //this只有在函数执行的时候我们才能确认执行的主体，但是和在哪执行没关系
+    //    function fn() {
+    //        console.log(this); //函数不执行它是是谁我也不知道
+    //    }
+</script>
+</body>
+</html>

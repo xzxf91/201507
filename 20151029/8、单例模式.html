@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //单独的实例、单独的个体-->单例模式
+
+    //很久很久以前,JS中只存在基本数据类型
+    //我想描述一个人
+    //    var name = "边东策";
+    //    var age = 28;
+    //    var height = "148cm";
+    //    var weight = "200kg";
+
+    //我想描述第二个人
+    //    var name = "李占杰";
+    //    var age = 18;
+    //    var height = "188cm";
+    //    var weight = "60kg";
+
+    //现在遇到问题了，我们后面描述的人的信息把第一个人的信息给覆盖掉了-->变量之间的冲突和全局变量的污染
+
+    //为了把描述同一件事物的特性放在一起；也同时避免和其他的事物发生冲突，我们引入了对象数据类型--->我们把这种编写的模式叫做“单例模式”
+    //1)实现分组 -->同一个"命名空间"(开了个空间起了个名字)  单例模式是把描述这个事物所有的属性和方法都放在了同一个命名空间下，实现了命名空间下的分组的作用
+    //2)避免冲突 -->不同的命名空间是互不影响的
+    //    var person1 = {
+    //        name: "边东策",
+    //        age: 28
+    //    };
+    //    var person2 = {
+    //        name: "李占杰",
+    //        age: 18
+    //    };
+    //    console.log(person2.name);
+    //    console.log(person1.age);
+
+    //我们在真实的项目中，应用单例模式可以实现最简单的模块化开发
+    //"模块化开发":一个网站按照功能划分成几大块，然后由一个团队多个人之间协作开发，每个人负责对应的部分，最后在把代码进行合并、压缩、上传...
+
+    //百度首页：登录、搜索、天气、页卡、换肤...
+    //程明杰是组长:合并、压缩等；写公共的方法库(公共模块)；
+    //李鑫完成登录
+    //王亚静完成搜索
+    //...
+
+    var utils = {
+        sum: function () {
+
+        }
+    };
+
+    var loginModel = {
+        submit: function () {
+            utils.sum();//在自己的命名空间下调用别的命名空间下的方法
+        }
+    };
+
+    var searchModel = {
+        fn:function(){
+
+        },
+        submit: function () {
+            //this-->searchModel
+            this.fn();//调用自己命名空间下大的方法我们尽量使用this来替换命名空间的名字
+        }
+    };
+    searchModel.submit();
+
+
+</script>
+</body>
+</html>

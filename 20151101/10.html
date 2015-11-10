@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //子类继承父类
+
+    function A() {
+        this.x = 100;
+    }
+    A.prototype.getX = function () {
+        console.log(this.x);
+    };
+
+    function B() {
+        this.x = 200;
+    }
+    //B也想有getX，发现A已经实现了，那么我们只需要把A中的getX继承归来用就可以了
+    //A的实例可以使用getX方法，所以我们的B如果想继承A的方法，只需要让B的原型指向A的一个实例即可-->原型继承
+    //结果：把A中私有的和公有的都赋值给了B中的公有的
+    B.prototype = new A;
+    var b = new B;
+
+    b.getX();//也是通过__proto__一直查找，找到A的原型上的getX并且执行-->B继承A，不是把A的东西复制一份过来，而是用的时候利用原型链的查找机制进行查找使用
+    //--> this是b  console.log(b.x) --> 200
+
+    //在B的原型上扩展一个叫做haha的方法-->对父类A的其他实例没有任何的影响
+    //    B.prototype.haha=function(){
+    //
+    //    };
+
+    //子类B同过原型链找到了父类A的原型，在里面增加了hehe，这样A的其他实例也会受到影响
+    B.prototype.__proto__.hehe=function(){
+
+    };
+    //重改父类中的getX的方法-->类的重写
+    B.prototype.__proto__.getX=function(){
+
+    };
+</script>
+</body>
+</html>

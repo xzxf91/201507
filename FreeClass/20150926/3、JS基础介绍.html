@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div></div>
+<script type="text/javascript">
+    //JS是JavaScript的缩写(javascript)
+    //JS是一门轻量级的脚本"编程语言"，它是由三部分组成：ECMAScript(4/5 定义了JS的基本语法、命名规范、变量、数据类型、操作语句等最基础最核心的内容)、DOM(提供了一系列操作页面上元素的方法)、BOM(提供了一系列操作浏览器的方法)
+    //浏览器(window)-->文档(document)-->HTML、CSS、JS
+    //window：浏览器对象
+    //document：文档对象
+    //DOM:document object model 文档对象模型
+    //BOM:browser object model 浏览器对象模型
+
+    //1)JS中的命名规范
+    //a、严格区分大小写  例如：zhuFeng 和 zhufeng 是两个不同的名字
+
+    //b、使用驼峰命名法
+    //第一个单词首字母小写，其余后面每一个有意义的单词的首字母都要大写
+    //命名的时候只能使用数字、字母、下划线、$，而且数字不能作为开头
+    //studentInfo-->学生信息  多学几个英文单词，命名的时候保证任何一个人过来看都能看懂(良好的编码习惯)
+
+    //c、不能使用关键字和保留字
+    //关键字:JS中具有特殊意义的单词，这些是不能让我们随便的使用的
+    //保留字:未来可能会成为关键字的
+    //教材的第5、6页的关键字和保留字背下来(重要)
+
+    //2、变量
+    //变量：可变的量 -->常量:固定的值
+    //JS中的变量没有自己的实际意义，它只是用来存储一个值和代表一个值的
+    //var 变量名 = 值;  定义一个变量，给它存储了一个值
+    //var num = 12;//创建一个变量num,给它存储了12这个值
+    //num = 13;//我们让num存储的值变为了13
+    //console.log(num);
+    //console.log 在控制台输出num这个变量所存储的值(而不是输出num)-->所有的浏览器查看控制台输出的内容都按F12键
+
+    //JS中"="是赋值：左边是变量、右边是给变量赋的值
+
+    //思考题："基础课专题-页面中常用的输出方式" 看这个视频把除了console.log以外的其他三种输出方式学会
+
+    //JS中的变量是松散类型的，因为它可以存储任何的数据类型值-->JS中都有哪些数据类型?
+    var num = 12;
+    var str = "zhufeng";
+    var boo = true;
+    var n = null;
+    var u = undefined;
+    var obj = {name: "李北辰"};
+    var ary = [12, 23, 34, 45];
+    var reg = /^[+-]?(\d|[1-9]\d+)(\.\d+)?$/;
+    var fn = function () {
+
+    }
+</script>
+</body>
+</html>

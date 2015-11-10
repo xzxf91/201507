@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //JS中的数据类型
+    //1、基本数据类型(值类型)
+    // number、string、boolean(布尔true/false)、null、undefined
+
+    //2、引用数据类型
+    // object(对象数据类型): {}对象 []数组 /^$/正则 ...
+    // function(函数数据类型)
+
+    /* var obj = {name: "彩丽", age: 18};//对象
+     var ary = [12, 23, 34];//数组
+     var reg = /^[+-]?(\d|[1-9]\d+)(\.\d+)?$/;//正则
+     var fn = function () {
+
+     };
+     function sum() {
+
+     }*/
+
+    //1、对象{}
+    //每一个对象数据类型都是由多组"属性名:属性值"组成的[由多组键值对组成 key:value]-->属性:特性、特征，描述一个对象具体信息的特征
+    var obj = {};
+
+    //实现属性的动态的增删改查:
+    //1)增加
+    //对象.属性名=属性值 / 对象["属性名"]=属性值
+    obj.name = "袁芝华";
+    obj["age"] = 19;
+
+    //2)修改
+    //语法和增加的相同，因为JS规定一个对象中的属性名是不能够重复的，之前没有就是增加，之前有就是修改
+    obj.age = 20;
+    //obj["age"] = 20;
+
+    //3)查询
+    // 对象.属性名 / 对象["属性名"]  在不写等于赋值的时候，就是获取值
+    //console.log(obj.age, obj["age"]);
+
+    //4)删除
+    // 真删除: delete 对象.属性名 / delete 对象["属性名"]
+    // 假删除: 对象.属性名 = null
+    //delete obj.age;
+    //console.log(obj);
+
+    //特殊点：JS中不可以以数字作为变量名，但是可以作为属性名
+    var obj2 = {0: 12, 1: 13};
+    //obj2.0 此时这种方式就不行了
+    //obj2["0"] --> obj2[0] 只能用中括号的方式进行操作，但是如果是数字的话，可以不用加""(属性不是数字必须加"")
+</script>
+</body>
+</html>

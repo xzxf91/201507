@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>数组中常用的操作方法</title>
+</head>
+<body>
+<script type="text/javascript">
+    //var ary = [23, 12, 34, 25, 45, 10];
+
+    //按照以下四个维度来记忆我们的数组
+    //数组的这个方法是做什么用的
+    //需要传递哪些参数
+    //方法执行完成的返回值是什么
+    //原有的数组是否改变
+
+    //1、关于数组的增、删、改
+    //1)push:向数组末尾增加新的内容
+    //参数:需要添加的内容，可以是一个值也可以是多个值
+    //返回值:添加完成后新数组的长度
+    //原有的数组是改变的
+    //    var res = ary.push(88, 99);
+    //    console.log(res, ary);
+
+    //2)pop:删除数组最末尾的那一项内容
+    //参数:无
+    //返回值:删除的那一个元素内容
+    //原有的数组是改变的
+    //    var res = ary.pop();
+    //    console.log(res, ary);
+
+    //以上两个方法的性能不是最好的，最好的实现方式是用原生的JS实现
+    //var ary = [23, 12, 34, 25, 45, 10];
+    //向末尾增加的原理：在数组最后一个索引的后面在添加一项；数组最后一个索引ary.length-1，我们需要添加的那一项的索引自然而然就是ary.length
+    //ary[ary.length] = 88; -->ary.push(88) 以后项目中尽量使用原生的JS实现
+
+    //删除末尾项的原理：让数组的长度在自身的基础上-1即可
+    //ary.length -= 1;//ary.length--; ary.length=ary.length-1;
+
+
+    //3)shift:删除数组的第一项
+    //参数:无
+    //返回值:删除的那一个元素内容
+    //原有的数组是改变的
+    //    var res = ary.shift();
+    //    console.log(res, ary);
+
+    //4)unshift:向数组的开头增加一项新的内容
+    //参数:需要添加的内容，可以是一个值也可以是多个值
+    //返回值:添加完成后新数组的长度
+    //原有的数组是改变的
+    //    var res = ary.unshift(100);
+    //    console.log(res, ary);
+
+    //5)splice
+    //splice(n,m):从索引n开始删除m个元素，把删除的元素当做一个新的数组返回，原来的数组发生了改变
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var res = ary.splice(2, 2);
+    //    console.log(res, ary); res-->[34,25] ary-->[23,12,45,10]
+
+    //splice(n):从索引n开始，删除到数组的末尾  -->splice(0)清空数组中的每一项,但是把原来的项都保存在一个新的数组中了(也可以理解为克隆一份个原数组一模一样的数组，但是原来的数组中的项都清空了)
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var res = ary.splice(0);
+    //    console.log(res, ary);
+
+    //splice(n,m,x):从索引n开始,删除m个元素，并且用x替换删除的元素
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var res = ary.splice(2, 3, 340);
+    //    console.log(res, ary);
+
+    //splice(n,0,x):从索引n开始，一个都没有删除，把x添加到索引n的前面
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var res = ary.splice(2, 0, 340);
+    //    console.log(res, ary);
+
+
+    //2、关于数组的查询和克隆
+    //1)slice
+    //slice(n,m):从索引n开始，找到索引为m处(但是不包含m)，将找到的内容以一个新的数组返回，原有的数组是不发生改变的
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var newAry = ary.slice(2, 5);
+    //    console.log(newAry, ary); newAry-->[34,25,45] ary-->没变
+
+    //slice(n):从索引n开始，一直查找到数组的末尾 slice(0)-->数组的克隆,克隆一份和原有数组一模一样的数组(原来的数组是不变的)
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var newAry = ary.slice(0);
+    //    console.log(newAry);
+
+    //slice(负数索引):相当于数组的长度加上负数索引，然后在进行查找
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var newAry = ary.slice(-5, -2);//ary.slice(ary.length+(-5),ary.length+(-2)) --> ary.slice(1,4)
+    //    console.log(newAry);
+
+    //2)concat
+    //数组1.concat(数组2):实现两个数组的拼接,原有的两个数组都不变
+    //数组1.concat():数组的克隆，原有数组不变
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    var newAry = ary.concat([100, 200, 300]);
+    //    console.log(newAry, ary);
+
+
+    //3、关于数组转换为字符串的
+    //1)toString:将数组转换为字符串，原有的数组不变
+    //2)join:将数组中的每一项按照指定的分隔符拼接成字符串，原有的数组不变
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    //var str = ary.join("+");
+    //    //console.log(str);//-->"23+12+34+25+45+10"
+    //    //我们发现如果我们可以把得到的字符串转换成数学表达式执行的话，那么相当于数组中的每一项相加求和-->"数组求和"
+    //    //eval:是把字符串变为JS表达式执行
+    //    //var total = eval(str);
+    //    //console.log(total);//-->"149"
+    //    console.log(eval(ary.join("+")));
+
+    //4、数组的排序和排列
+    //1)reverse:将数组倒过来排列，原有的数组改变
+    //    var ary = [23, 12, 34, 25, 45, 10];
+    //    ary.reverse();
+    //    console.log(ary);
+
+    //2)sort:将数组进行排序(可以按照从小到大，也可以从大到小，亦可以实现按照自己的排序规则)
+    //直接使用ary.sort()不传递任何的参数，只能处理10以内的排序 ->排序的时候默认是按照每一项的Unicode编码值进行排序的
+    //ary.sort(function (a, b) {return a - b;}); 由小到大排序
+    //ary.sort(function (a, b) {return b - a;}); 由大到小排序
+    //    var ary = [23, 12, 34, 25, 45, 10, 100];
+    //    ary.sort(function (a, b) {
+    //        return b - a;
+    //    });
+    //    console.log(ary);
+
+
+    //5、一些常用的但是在IE6~8下不兼容的方法(正式课我们教大家如何的处理兼容,移动端经常使用这些方法)
+    //1)indexOf/lastIndexOf:返回当前项在数组中的索引,indexOf是从前向后找,找出当前项第一次出现的索引位置;而lastIndexOf是从后向前找,找出当前项最后一次出现的索引位置;-->不管是哪一个，如果没有，返回的索引都是-1;我们应用这个原理经常用indexOf来判断数组中是否包含某一项;
+    //原有的数组都是不改变的
+    //    var ary = [23, 12, 34, 12, 45, 10];
+    //    //需求:想判断数组中是否包含120，不包含向末尾增加，包含的话输出他的索引
+    //    var index = ary.indexOf(120);
+    //    if (index >= 0) {//包含
+    //        console.log(index);
+    //    } else {
+    //        ary[ary.length] = 120;//-->ary.push(120);
+    //    }
+    //    console.log(ary);
+
+    //2)forEach:相当于我们自己写的for循环，用来遍历数组中的每一项，原有的数组不变
+    var ary = [23, 12, 34, 12, 45, 10];
+    //    for (var i = 0; i < ary.length; i++) {
+    //        console.log(ary[i]);
+    //    }
+    ary.forEach(function (item, index, input) {
+        //console.log(item, index, input);
+        //item:每一次遍历的时候，存储数组中当前项的值
+        //index:每一次遍历的时候，存储数组中当前项的索引
+        //input:原始的数组
+        console.log(item);
+    });
+    //3)map -->思考题自己回去上网去查
+</script>
+</body>
+</html>

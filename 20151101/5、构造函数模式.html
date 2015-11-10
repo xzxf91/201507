@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //var obj = {};//字面量方式
+    //var obj = new Object();//实例创建-->通过new创建了Object这个类的一个实例
+    //-->构造函数模式:通过new一个类来创建一个实例
+
+    //构造函数模式和工厂模式的区别:
+    //一般情况下，我们如果是通过构造函数模式来创建一个类的话，我们的类名的第一个字母要大写(这不是规范而是大家约定俗称的一个规律)
+    //1)在执行的时候，我们的构造函数模式是通过 new CreateJsPerson() 来执行的-->我们把CreateJsPerson称之为一个类，而通过类创建出来的结果(p1)就是当前类的一个实例
+    //2)类也是一个函数，所以也会像普通函数执行一样:形成一个私有的所用域,形参赋值,预解释,代码从上到下执行
+    //但是构造函数模式在代码执行之前，浏览器默认首先会创建一个对象数据类型的值(不用自己手动的进行创建了)，并且会默认的把这个对象数据类型的值进行返回(不用自己手动的return返回了)
+    //3)把浏览器默认创建的那个对象当做当前函数执行的整体(this)，然后通过this.xxx=xxx这种方式给默认创建的对象增加属性名和属性值
+    //浏览器默认创建的这个对象其实就是我们当前类的一个实例
+    //在构造函数模式创建一个类的时候，方法执行，里面的this(this.xxx=xxx)其实就是我们当前类的一个实例-->this的第四种情况
+
+    function CreateJsPerson(name) {
+        this.name = name;
+        this.writeJs = function () {
+            //这里的this需要看writeJs什么时候执行，前面的执行的主体是谁
+            console.log("my name is " + this.name + "，i can write javascript 啦~~");
+        };
+    }
+    var p1 = new CreateJsPerson("杨玲玲");
+    p1.writeJs();
+
+    var p2 = new CreateJsPerson("董久成");
+    p2.writeJs();
+
+    //我们在类的函数体中通过this.xxx=xxx给实例增加的属性都是当前实例的私有的属性
+    console.log(p1.writeJs === p2.writeJs);//-->false
+
+
+    //类都是函数数据类型的
+    //console.log(typeof CreateJsPerson);//-->"function"
+    //类创建出来的实例都是对象数据类型的
+    //console.log(typeof p1);//-->"object"
+
+</script>
+</body>
+</html>

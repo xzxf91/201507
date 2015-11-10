@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //第一种方案：给Fn.prototype起一个简短的名字，然后接下来用简短的名字来实现增加属性和方法
+    //    function Fn() {
+    //    }
+    //    var pro = Fn.prototype;
+    //    pro.a = function () {
+    //
+    //    };
+
+    //第二种方案：自己编写一个对象把浏览器默认给prototype开辟的那个对象给覆盖掉
+    //    function Fn() {
+    //
+    //    }
+    //    Fn.prototype.a = function () {
+    //        console.log(1);
+    //    };
+    //    Fn.prototype = {
+    //        constructor: Fn,
+    //        b: function () {
+    //            console.log(2);
+    //        },
+    //        c: function () {
+    //            console.log(3);
+    //        }
+    //    };
+    //    var f = new Fn;
+    //    //    f.a();  报错,a被覆盖掉了
+    //    //    f.b();
+    //    //    f.c();
+    //    console.log(f.constructor);//-->Object 在没有手动添加constructor: Fn的时候，如果增加了输出的结果是Fn
+
+    //1、只有浏览器天生给Fn.prototype开辟的那个堆内存才存在constructor，我们自己开辟的这个堆内存是不会自己创建constructor
+    //我们在使用这种方式设置的时候，一定要记住手动的给堆内存中添加constructor，指向函数本身
+
+    //2、在使用第二种方法批量设置公有属性方法的时候，我们发现会把之前已经写在prototype上的所有的方法给覆盖掉(需要我们特别注意的)
+
+
+    //Array数组类
+    //我们学习的数组中的常用方法其实都是在Array的原型上定义的公有方法
+    //console.dir(Array.prototype);
+
+    //我们把自己需要的方法扩展到内置类的原型上
+    //1)我们自己增加的方法可能会把浏览器内置的方法进行覆盖-->通常我们自己写的方法都需要加特殊的前缀
+    //    var pro = Array.prototype;
+    //    pro.myDistinct = function () {};
+
+    //在修改内置类的时候，由于这样做会把之前的都覆盖掉，所以浏览器不允许这样修改
+    //    Array.prototype = {
+    //        constructor: Array,
+    //        myDistinct: function () {
+    //
+    //        }
+    //    };
+
+    Array.prototype.myDistinct = function myDistinct() {
+        //1)this->我们想要操作的那个数组，我只需要在这里使用this来进行处理即可
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            var item = this[i];
+            if (obj[item] == item) {
+                this[i] = this[this.length - 1];
+                this.length--;
+                i--;
+                continue;
+            }
+            obj[item] = item;
+        }
+        obj = null;
+        return this;//-->2)添加return this是模拟内置方法的链式写法
+    };
+
+    var ary = [1, 2, 3, 1, 2, 3, 3, 2, 1, 2, 3, 4, 2, 3, 1, 2, 3];
+    ary.myDistinct().sort().reverse();
+    console.log(ary);
+
+
+    //链式写法：先执行sort，执行完成紧接着执行了reverse...
+    //ary.sort -->返回结果是排序后的数组，它仍然是Array这个类的一个实例，所以还可以继续使用类原型上的方法
+    //push返回的结果是新增后数组的长度，不是一个数组，不能再继续使用数组的方法了，所以在加了pop()后报错了
+    //    ary.sort(function (a, b) {
+    //        return a - b;
+    //    }).reverse().push(1000).pop();
+    //    console.log(ary);
+
+
+    //    ary.myDistinct();
+    //    console.log(ary);
+    //    var ary2 = [12, 23, 34, 23, 14];
+    //    ary2.myDistinct();
+    //    console.log(ary2);
+
+
+    //思考题：
+    //(5).plus(3).minus(2) -->5+3-2 链式写法 在Number.prototype上扩展plus和minus
+    //Array.prototype.slice  ->n,m  n  n或者m是负数索引 n>m...  要求自己在数组的原型上扩展mySlice的方法，实现和内置的slice一模一样的功能(不能使用数组内置的方法，例如：添加不能是用push，只能用this[this.length]=xxx)
+</script>
+</body>
+</html>

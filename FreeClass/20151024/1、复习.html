@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        #div1 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #11c900;
+            border-radius: 50%; /*CSS3中新增加的属性，如果我们写的是50%,盒子是正方形的话就会变成一个圆*/
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<script type="text/javascript">
+    var oDiv = document.getElementById("div1");
+    //1、获取元素的背景颜色值
+    //元素.style.属性 通过这种方式获取，只能获取行内样式上的值(不管你在样式表中是否写了,只要行内上不写都获取不到) -->想获取到必须写在行内样式上
+    //思考：如果我就想获取样式表中设置的样式值，我们可以使用window.getComputedStyle(IE下用currentStyle)来处理
+
+    //为什么会有这样的机制?
+    //我们获取的oDiv是一个对象数据类型的值,里面包含了当前元素的很多属性名和属性值：
+    //className:设置或者获取我们元素上class属性的值
+    //id:设置或者获取元素的id值
+    //tagName:设置或者获取元素的标签名
+    //innerHTML:设置或者获取元素中的内容
+    //innerText:和innerHTML相同也是设置或者获取元素中的内容
+    //二者区别：innerHTML可以识别有效的元素标签，而innerText不能识别标签都会当做文本添加进来；innerText在火狐浏览器中存在兼容的问题；我们在项目中基本上使用的都是innerHTML；
+    //oDiv.innerHTML = "<a href='http://www.baidu.com'>我是百度</a>";
+
+    //style:CSSStyleDeclaration(行内样式信息的详细描述) 属性值是一个新的对象数据类型，里面包含了我们元素的样式(行内样式)，并且存储的只能是行内的样式，行内上没有的话，这里面的属性值也是空，所以我们通过 oDiv.style.backgroundColor获取的才是空
+
+    //oDiv.style.backgroundColor = "yellow";
+    //--> oDiv通过地址xxxfff000找到内容空间中的style，然后在通过地址xxxfff111把里面的backgroundColor变为yellow
+
+    //    var oDivStyle = oDiv.style;//把oDiv下style属性的值赋值给我们的oDivStyle变量 -->oDivStyle=xxxfff111
+    //    oDivStyle.backgroundColor = "green";
+    //    //-->也可以
+
+    //    var bg = oDiv.style.backgroundColor;
+    //    bg = "blue";
+    //    //-->不可以
+
+
+    //document.body  获取的是整个body
+    //document.documentElement 获取的是整个HTML
+
+    //document是上下文context，限定了我们获取的范围；
+    //1)一个页面中理论上我们的ID是不能重复的，所以我们的getElementById这个方法的上下文只能是document
+    //2)如果我们不小心写重复了，那么获取的只是第一个
+    //3)在IE6和IE7下，会把表单元素的name属性值也看做ID-->我们在编写页面的时候一定要防止表单元素name和id的冲突
+    //var oDiv = document.getElementById("div1");
+    //var oDiv = document.body.getElementById("div1");//Uncaught TypeError: document.body.getElementById is not a function 说明getElementById不是一个方法 --->这种情况一般都是上下文不符合
+    //4)一般我们有些时候，不需要获取元素，直接在js中用元素的ID来代表这个元素也可以;但是这样的话，如果页面中存在多个id相同的，我们获取的是多个元素; -->强烈不推荐大家这样来用
+    //console.log(div1);
+</script>
+</body>
+</html>

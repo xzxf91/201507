@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //IT男的悲催职业病:
+    //李鑫下班回家，媳妇打电话:"老公啊，下班回来买三个馒头，遇到卖西瓜的买一个吧"，李鑫:"ok 保证完成任务".....
+    //回到家只拿了一个馒头，媳妇问："为啥只有一个呢"，回答："因为我遇到卖西瓜的了"
+
+    //1)if、else if、else
+    //    if (条件1) {
+    //        条件1成立执行的操作
+    //    } else if (条件2) {
+    //        条件2成立执行的操作
+    //    } else if (条件3) {
+    //        条件3成立执行的操作
+    //    }...
+    //    else{
+    //        以上条件都不成立执行的操作
+    //    }
+
+    //条件：
+    //1)可以是大于、小于、等于(===)
+    //2)条件可以由多个小条件组合而成，中间用 &&(并且：所有都为真，整体条件才为真) ||(或者：只要有一个为真，整体条件就为真) 隔开
+    //3)如果只写一个值(类似于下面):首先把这个值转化为布尔类型，然后看是true还是false，是true条件成立，反之则不成立
+    //    var num = 10;
+    //    if (num) {//将num存储的值转换为布尔类型(只有[0、NaN、空字符串、null、undefined]为false这个规律)
+    //    }
+    //    if (!num) {
+    //
+    //    }
+    //    if ("10px" * 3) {//首先计算公式的结果，然后把结果转换为布尔类型
+    //        //"10px" * 3 --> NaN --> false 条件不成立
+    //    }
+
+
+    //2、三元运算符:简单的if、else
+    //条件?条件成立执行:条件不成立执行;
+    //var num = 12;
+    //    if (num >= 10) {
+    //        num++;
+    //    } else {
+    //        num += 2;
+    //    }
+    //num >= 10 ? num++ : num += 2;
+
+    //    var num = 12;
+    //    if (num >= 0) {
+    //        if (num <= 10) {
+    //            num += 1;
+    //        } else {
+    //            num += 2;
+    //        }
+    //    } else {
+    //        num += 3;
+    //    }
+    //    num >= 0 ? (num <= 10 ? num += 1 : num += 2) : num += 3;
+
+    //    var num = 12;
+    //    if (num >= 10) {
+    //        num++;
+    //    }
+    //    num >= 10 ? num++ : null;
+    //    num >= 10 ? num++ : void 0;//void 0-->undefined
+
+
+    //3、switch case:一个变量在不同值情况下的不同操作
+    var num = "5";
+    if (num == 0) {
+        num++;
+    } else if (num == 5) {//"5"==5 -->true
+        num += 2;//"5"+2 --> "52"
+    } else if (num == 10) {
+        num += 3;
+    } else {
+        num += 4;
+    }
+    console.log(num);//-->7
+
+    num = "5";
+    switch (num) {
+        case 0:
+            num++;
+            break;//每一种case情况结束都要加break
+        case 5://"5"===5 case的每一种比较情况都是绝对相等的比较
+            num += 2;
+            break;//如果不加break，不管下面的case情况是否成立，都会执行对应的操作
+        case 10:
+            num += 3;
+            break;
+        default://相当于我们的else
+            num += 4;//"5"+4 -->"54"
+    }
+    console.log(num);//-->"54"
+
+    //    num = 5;
+    //    switch (num) {
+    //        case 0:
+    //            num += 1;
+    //            break;
+    //        case 5:
+    //        case 10:
+    //            num += 2;
+    //            //等于5或者等于10我们都累加2
+    //            break;
+    //        case 15:
+    //            num += 3;
+    //            break;
+    //    }
+
+
+</script>
+</body>
+</html>

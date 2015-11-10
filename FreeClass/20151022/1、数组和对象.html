@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //数组是对象数据类型中的一种-->数组也是对象数据类型
+
+    //1、创建一个数组有两种方式:
+    //字面量方式
+    //var ary = [];
+    //实例创建的方式
+    //var ary = new Array;
+
+    //2、数组和对象一样，也是由属性名和属性值组成的
+    //我们在[]中看到的每一项的值，都是它的属性值
+    //数组默认的是以数字作为属性名的，并且数字从0开始，0代表第一项的值，1代表第二项的值....我们把代表第几项值的那个数字属性名称之为数组的"索引"-->数组的索引就是它的属性名-->ary[索引] 就是获取数组中某一项的值
+    //ary.length 代表数组的长度
+    //var ary = [12, 23, 34, 45, 56];
+    //console.dir(ary);
+    //我们之前学到的arguments、getElementsByTagName获取的元素集合也是这样的结构，我们把其称之为"类数组"
+
+    //3、我想把一个数组中的所有项的值都获取到-->for循环/for in循环
+    var ary = [12, 23, 34, 45, 56];
+    for (var i = 0; i < ary.length; i++) {
+        console.log(ary[i]);
+    }
+    
+    //数组也是一个对象数据类型的值，所以同样可以使用for in循环来遍历里面的每一项的值
+    //    for (var key in ary) {
+    //        console.log(ary[key]);
+    //    }
+</script>
+</body>
+</html>

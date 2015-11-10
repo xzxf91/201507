@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var jsPerson1 = {
+    //        name: "刘继红",
+    //        writeJs: function () {
+    //            console.log("my name is " + this.name + "，i can write javascript 啦~~");
+    //        }
+    //    };
+    //
+    //    var jsPerson2 = {
+    //        name: "王苗苗",
+    //        writeJs: function () {
+    //            console.log("my name is " + this.name + "，i can write javascript 啦~~");
+    //        }
+    //    };
+
+    //单例模式虽然解决了分组的作用，但是还处于手工作业模式，为了增加生产的效率-->第二次工业革命:“工厂模式”-->实现批量生产
+    //工厂模式其实就是一个函数
+    //1)函数的封装:把实现同一个功能的相同的代码放在一个函数中，以后再想实现这个功能的时候,我们只需要直接的执行函数即可-->减少页面中的冗余代码，提高了代码的重复使用率["低耦合高内聚"]
+    function createJsPerson(name) {
+        var obj = {};
+        obj.name = name;
+        obj.writeJs = function () {
+            console.log("my name is " + this.name + "，i can write javascript 啦~~");
+        };
+        return obj;
+    }
+    var person1 = createJsPerson("刘继红");
+    var person2 = createJsPerson("王苗苗");
+    person1.writeJs();
+    person2.writeJs();
+    //person1的writeJs和person2的writeJs不是同一个方法
+    console.log(person1.writeJs === person2.writeJs);//-->false
+
+    //后台语言的多态包含了方法的重载和重写
+    //重载:方法名相同，参数的个数或者参数的类型不一样
+    //    public void fn(string name){
+    //
+    //    }
+    //    public void fn(int name){
+    //
+    //    }
+    //    fn(1)
+    //重写:子类重写父类的方法
+
+    //JS中有重载吗? ->不存在
+    //JS中存在重写
+    //    function fn(name){
+    //
+    //    }
+    //    function fn(name,age){
+    //
+    //    }
+    //    fn("");
+
+    //JS中的多态指的是一个方法的多种形态
+    //同一个方法根据执行时候传递参数的不同(值不同,类型不同,有的传了有的没传...)我们实现了不一样的功能操作-->JS的多态
+    function sortAry(ary, type) {
+        var newAry = ary.slice(0);
+        var temp = null;
+        for (var i = 0; i < newAry.length - 1; i++) {
+            for (var j = 0; j < newAry.length - 1 - i; j++) {
+                if (newAry[j] > newAry[j + 1]) {
+                    temp = newAry[j];
+                    newAry[j] = newAry[j + 1];
+                    newAry[j + 1] = temp;
+                }
+            }
+        }
+        //如果type没有传递值小->大，传递了值就是大->小
+        typeof type !== "undefined" ? newAry.reverse() : null;
+        return newAry;
+    }
+    var ary = [12, 13, 12, 13, 21, 10];
+    console.log(sortAry(ary));
+    console.log(sortAry(ary, 1));
+
+
+</script>
+</body>
+</html>

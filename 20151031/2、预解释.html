@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //1、预解释(变量提升(声)):
+    //在当前作用域中，JS代码从上到下执行之前，首先会把所有带var和function关键字的进行提前的声明或者定义
+    //var num=12;
+    //声明(declare): var num; 只是声明没有定义，变量的默认值是undefined
+    //定义(defined): num=12; 其实就是相当于给它赋值
+
+    //2、带var和带function关键字的在预解释的时候是不一样的
+    //var的是预解释的时候，只是提前的声明
+    //function的是预解释的时候，把声明和定义都完成了
+
+    //window进行了预解释:var num;
+    //    console.log(num);//->undefined
+    //    var num = 12;
+    //    console.log(num);//->12
+
+    //window进行预解释: fn = xxxfff000
+    //所以函数在定义代码上面或者下面都可以执行(预解释的之后就完成了声明和定义)
+    //    console.log(fn);//->函数本身
+    //    function fn() {
+    //        console.log("ok");
+    //    }
+    //    console.log(fn);//->函数本身
+
+
+    console.log(name, age);//->undefined、undefined
+    var name = "china";
+    var age = 5000;
+    function fn() {
+        console.log(name, age);//->undefined 5000
+        var name = "zhufeng";
+        age = 7;
+        console.log(name, age);//->"zhufeng" 7
+    }
+    fn();
+    console.log(name, age);
+
+
+    //私有作用域中的预解释:
+    //函数执行形成一个私有的作用域
+    //1)给形参赋值
+    //2)私有作用域下的预解释
+    //3)私有作用域中的代码执行
+
+    //在私有作用域中遇到一个变量，我们首先看是否为私有的变量，如果是私有的，就受到了保护(闭包)，不受外界的干扰
+    //如果不是私有的，则往上一级作用域进行查找
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

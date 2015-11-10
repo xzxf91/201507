@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //1、for循环
+    //四步曲
+    //1)设置一个初始值 var i=0;
+    //2)设置循环执行条件 i<10;
+    //3)执行循环体中的内容
+    //4)执行最后的累加操作 i++;
+    //不管是continue还是break，只要在循环体中遇到了，循环体中它们下面的代码就不在执行了
+    //continue:继续执行i++，然后进行下一轮的循环
+    //break:遇到break，整个循环直接的结束,i++也不在执行
+    //    for (var i = 0; i < 5; i++) {
+    //        console.log(i);//-->0 1 2 3 4
+    //        continue;
+    //        i+=10;//这个代码不执行，因为在continue后面
+    //    }
+    //    console.log(i);//-->5
+
+    //BAT面试题：
+    //    for (var i = 0; i < 10; i++) {
+    //        if (i <= 5) {
+    //            i++;
+    //            continue;
+    //        } else {
+    //            i += 2;
+    //            break;
+    //        }
+    //        i += 3;
+    //        console.log(i);
+    //    }
+    //    console.log(i);//-->8
+
+
+    //2、for in循环 -->遍历一个对象中的属性名和属性值的，有多少个属性，就循环多少次
+    var obj = {name: "徐冠英", age: 19, sex: "美女", height: "175cm", 0: 100};
+    for (var key in obj) {
+        //console.log(key);//key这个变量存储的值就是我们的属性名，而且属性名可能会是数字，并且循环的时候，是先循环数字属性名的，然后在循环字母的
+        //在for in循环中想获取我们的属性名，只能用[]，不能用.，因为不确定是否存在数字属性名
+        //console.log(obj[key]);//把key变量存储的值(属性名)放到[]中，获取对应的属性值
+        console.log("key:" + key + " ~ value:" + obj[key]);
+    }
+</script>
+</body>
+</html>

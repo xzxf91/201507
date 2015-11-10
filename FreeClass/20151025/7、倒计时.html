@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Date</title>
+    <style type="text/css">
+        body, div {
+            margin: 0;
+            padding: 0;
+            font-family: "微软雅黑";
+            font-size: 24px;
+            -webkit-user-select: none;
+        }
+
+        #div1 {
+            margin: 50px auto;
+            width: 700px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #FFCCFF;
+            border: 1px dashed #11c900;
+            letter-spacing: 3px;
+        }
+
+        #div1 span {
+            color: #ff3643;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">距离开抢还剩 [<span>00:00:00</span>]</div>
+
+<script type="text/javascript">
+    //设定一个目标时间，还有当前的时间
+    //目标的时间-当前的时间 >0 还没有到达目标值，我们进行倒计时处理
+    //getTime:获取当前时间距离1970-01-01 00:00:00之间的毫秒差
+    //console.log(new Date().getTime());//-->1445764647757
+
+    var timer = null;
+    function addZero(val) {
+        return val < 10 ? "0" + val : val;
+    }
+    function computeTime() {
+        var resStr = "00:00:00";
+        var tarTime = new Date("2015/10/25 18:02:30");
+        var nowTime = new Date();
+        //spanTime:获取的是目标时间和当前时间之间的毫秒差
+        var spanTime = tarTime.getTime() - nowTime.getTime();
+        if (spanTime > 0) {
+            //1)计算包含多少个小时
+            var hour = Math.floor(spanTime / (1000 * 60 * 60));
+            //2)把小时占用的毫秒数减去
+            spanTime = spanTime - hour * 60 * 60 * 1000;
+            //3)计算包含多少分钟
+            var minute = Math.floor(spanTime / (1000 * 60));
+            //4)把分钟占用的毫秒数减去
+            spanTime = spanTime - minute * 60 * 1000;
+            //5)计算包含多少秒
+            var second = Math.floor(spanTime / 1000);
+            //6)拼接我们的字符串
+            resStr = addZero(hour) + ":" + addZero(minute) + ":" + addZero(second);
+        } else {
+            window.clearInterval(timer);
+            timer = null;
+        }
+        return resStr;
+    }
+
+    var oDiv = document.getElementById("div1");
+    var oSpan = oDiv.getElementsByTagName("span")[0];
+    oSpan.innerHTML = computeTime();
+
+    timer = window.setInterval(function () {
+        console.log(1);
+        oSpan.innerHTML = computeTime();
+    }, 1000);
+
+</script>
+</body>
+</html>

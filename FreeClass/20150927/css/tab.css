@@ -1,0 +1,53 @@
+body, div, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 14px;
+    -webkit-user-select: none; /*在谷歌浏览器中禁止用户手动选中文字*/
+}
+
+ul, li {
+    list-style: none;
+}
+
+#tab {
+    margin: 50px auto;
+    width: 500px;
+}
+
+#tab ul {
+    position: relative;
+    top: 1px;
+}
+
+#tab ul li {
+    float: left;
+    margin-right: 15px;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #31b0d5;
+    cursor: pointer;
+}
+
+#tab ul li.select {
+    background: #FFF38F;
+    border-bottom: 1px solid #FFF38F;
+}
+
+#tab div {
+    display: none;
+    clear: both;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    font-size: 18px;
+    border: 1px solid #31b0d5;
+    background: #FFF38F;
+}
+
+#tab div.select {
+    display: block;
+}
+

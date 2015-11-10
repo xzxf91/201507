@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //++i和i++的区别:
+    //两个都是让自身累加1
+    //    //i++:先拿i的值和其他的值进行运算，运算完成后在进行累加
+    //    var i = 0;
+    //    console.log(15 + i++);//->15 i=1
+    //    //++i:先进行累加，把累加完成的结果在和其他的值进行运算
+    //    i = 0;
+    //    console.log(15 + (++i));//->16 i=1
+
+    //思考题(群里自己讨论)：
+    //    var i = 0;
+    //    console.log(10 + (++i) + (i++) + (++i) + (i++));
+    //    console.log(i);
+
+
+    function fn() {
+        var i = 2;
+        return function (n) {
+            console.log(n + (++i));
+        }
+    }
+    var f = fn();
+    f(3);//->6
+    f(4);//->8
+    fn()(5);//->8
+    fn()(6);//->9
+</script>
+</body>
+</html>

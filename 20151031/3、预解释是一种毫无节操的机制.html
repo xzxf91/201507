@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //自从学了预解释，从此节操是路人
+
+    //in:attr in obj 判断当前的属性名是否为这个对象的一个属性(既能检测私有的属性也能检测公有的属性)
+    //    var obj = {name: "林琪雅"};
+    //    console.log("name" in obj);//->true
+    //    console.log("age" in obj);//->false
+
+    //1、不管条件是否成立都要进行预解释
+    //window预解释:var num; num是全局变量，"在全局作用域下"声明的变量也相当于给window增加了一个属性名 -->window.num=undefined;
+    //    if (!("num" in window)) {//"num" in window ->true
+    //        var num = 12;
+    //    }
+    //    console.log(num);//-->undefined
+
+    //2、预解释只发生在"="的左边，右边是一个值，是不进行预解释的
+    //window下的预解释:var fn;
+    //fn();//->undefined()  Uncaught TypeError: fn is not a function ->fn不是一个函数不能执行
+    //在JS中如果上一行代码出现了异常，下面的代码都不在继续执行了
+    //    var fn = function () {
+    //        console.log("ok");
+    //    };
+    //    fn();
+
+    //    fn();//->ok
+    //    function fn() {
+    //        console.log("ok");
+    //    }
+    //    fn();//->ok
+
+    //在真实的项目中，为了保持代码的可读性和严谨性，我们一般使用函数表达式的方法来替代我们普通函数定义的方式
+
+    //匿名函数(没有函数名)
+    //1、函数表达式-->把函数当做一个值赋值给其他的内容
+    //var fn = function () {console.log("ok");};
+    //oDiv.onclick = function () {};
+    //window.setTimeout(function () {},1000);
+
+    //2、自执行函数-->定义和执行一起完成的函数
+    //    ;(function(num){})(100);
+    //    ~function(num){}(100);
+    //    !function(num){}(100);
+    //    +function(num){}(100);
+    //    -function(num){}(100);
+
+    //3、自执行函数在window下预解释的时候是不进行预解释的-->function是不进行预解释的
+    //    ;(function (num) {
+    //        //当自执行函数执行的时候，形成一个私有作用域，在私有作用域中的操作:
+    //        //形参赋值
+    //        //预解释
+    //        //代码执行
+    //    })(100);
+
+    //4、关于函数中的预解释
+    //return "下面"的代码不执行，但是要进行预解释
+    //return "后面"的是返回的值，所以不参与预解释
+    //    function fn() {
+    //        //预解释：var num;
+    //        console.log(num);//-->undefined
+    //        //return返回的是一个值:首先定义一个函数开一个堆内存xxxfff111,把地址返回到函数的外面
+    //        return function () {
+    //
+    //        };
+    //        //函数体中return下面的代码不在执行了
+    //        var num = 13;
+    //        console.log(num);
+    //    }
+    //    fn();
+
+
+    //5、关于名字重了(变量的名字如果和函数名相同也算重复了)
+    //    var fn = 12;//window.fn=12
+    //    function fn(){//window.fn=xxxfff000
+    //
+    //    }
+    //在预解释的时候，如果遇到名字重复了，不重新的声明，但是需要重新的定义
+    //    fn(); ->2
+    //    function fn(){console.log(1);};
+    //    fn(); ->2
+    //    var fn=12; ->fn=12
+    //    fn(); ->error
+    //    function fn(){console.log(2);};
+    //    fn();
+</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+        body, div, ul, li {
+            margin: 0;
+            padding: 0;
+            font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+            font-size: 18px;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #ul1 {
+            margin: 10px auto;
+            padding: 15px;
+            width: 50%;
+            border: 1px solid #11c900;
+            border-radius: 10px;
+        }
+
+        #ul1 li {
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px dashed #ccc;
+        }
+
+        #ul1 li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+<ul id="ul1">
+    <li>98</li>
+    <li>94</li>
+    <li>89</li>
+    <li>100</li>
+    <li>65</li>
+    <li>78</li>
+    <li>98</li>
+    <li>23</li>
+    <li>45</li>
+    <li>90</li>
+</ul>
+
+<script type="text/javascript" src="js/utils.js"></script>
+<script type="text/javascript">
+    var oUl = document.getElementById("ul1");
+    var oLis = oUl.getElementsByTagName("li");
+    //console.log(oLis);//-->HTMLCollection元素集合，也是一个类数组
+    //1)把类数组转换为数组
+    //arguments这样使用兼容所用的浏览器，元素集合或者节点集合调用这种方式的时候在IE6~8下不兼容 ->Array.prototype.slice: 'this' 不是 JavaScript 对象
+
+    //我们使用try、catch处理浏览器的兼容(第一种我给大家讲的兼容方式的写法)
+    //原理:在执行某代码时候报错了，我们就说它不兼容，不兼容的我们就在catch中把兼容处理了即可 -->前提：不兼容的代码执行报错我们才可以检测到
+    //    var ary = [];
+    //    try {
+    //        ary = Array.prototype.slice.call(oLis, 0);
+    //    } catch (e) {
+    //        for (var i = 0; i < oLis.length; i++) {
+    //            ary[ary.length] = oLis[i];
+    //        }
+    //    }
+    //    console.log(ary);
+
+    var ary = utils.listToArray(oLis);
+    ary.sort(function (a, b) {
+        return a - b;
+    });
+
+
+    //    function avgFn() {
+    //        var ary = Array.prototype.slice.call(arguments, 0);
+    //        ary.sort(function (a, b) {
+    //            return a - b;
+    //        }).shift();
+    //        ary.length--;
+    //        return (eval(ary.join("+")) / ary.length).toFixed(2);
+    //    }
+
+    //    function avgFn() {
+    //        Array.prototype.sort.call(arguments, function (a, b) {
+    //            return b - a;
+    //        });
+    //        Array.prototype.shift.call(arguments);
+    //        Array.prototype.pop.call(arguments);
+    //        var str = Array.prototype.join.call(arguments, "+");
+    //        return (eval(str) / arguments.length).toFixed(2);
+    //    }
+    //    avgFn(100, 200, 300, 400, 500);
+</script>
+</body>
+</html>

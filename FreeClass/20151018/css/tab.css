@@ -1,0 +1,56 @@
+/*
+ display、position、top、left、z-index、margin、padding、width、height、border、background、其余的零碎的样式属性
+*/
+body, div, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: "\5FAE\8F6F\96C5\9ED1", Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+ul, li {
+    list-style: none;
+}
+
+#tab {
+    margin: 20px auto;
+    width: 500px;
+}
+
+#tab ul {
+    position: relative;
+    top: 1px;
+}
+
+#tab ul li {
+    float: left;
+    margin-right: 15px;
+    width: 100px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    letter-spacing: 3px; /*让文字与文字之间有3px的距离*/
+    font-weight: bold;
+    border: 1px solid #31b0d5;
+    cursor: pointer;
+}
+
+#tab ul li.select {
+    background: #FFF38F;
+    border-bottom-color: #FFF38F;
+}
+
+#tab div {
+    display: none;
+    height: 150px;
+    line-height: 150px;
+    text-align: center;
+    border: 1px solid #31b0d5;
+    background: #FFF38F;
+    clear: both; /*清除li浮动对自己的影响*/
+}
+
+#tab div.select {
+    display: block;
+}
+

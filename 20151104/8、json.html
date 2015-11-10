@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    //json不是一种新的数据类型，它只是我们对象数据类型中的一种特殊的格式
+    //var obj = {name: "严美元", age: 18};//普通格式的对象
+    //var jsonObj = {"name": "严美元", "age": 18};//JSON格式的对象-->只是把普通格式的对象中的属性名用""(只能是双引号)包起来
+
+    //JSON格式的对象经常被用来完成前端和后台之间的数据衔接交互，所以非常的重要，window对象中提供给我们几个处理JSON格式对象的方法
+    //window.JSON 一个对象，里面包含了两个经常使用的方法：parse、stringify
+    //JSON.stringify 把JSON格式的对象(普通对象)转换为JSON格式的字符串
+    //JSON.parse 把JSON格式的字符串转换为JSON格式的对象
+
+    //    var ary = [
+    //        {name: "李鑫", age: 28, score: 98},
+    //        {name: "张哲", age: 24, score: 89}
+    //    ];
+    //    var jsonStr = JSON.stringify(ary);
+    //    console.log(jsonStr);//-->'[{"name":"李鑫","age":28,"score":98},{"name":"张哲","age":24,"score":89}]'
+    //    console.log(JSON.parse(jsonStr));
+
+    //在IE6~7浏览器中，不存在JSON这个对象，也就不存在JSON.stringify和JSON.parse这两个方法了
+    //1)如何的把JSON格式的字符串转换为JSON格式的对象 ->JSON.parse
+    var str = '[{"name":"李鑫","age":28,"score":98},{"name":"张哲","age":24,"score":89}]';
+    //    try {
+    //        JSON.parse(str);
+    //    } catch (e) {
+    //        //IE6~7下采用这种方式->在str之前手动拼接一个()
+    //        eval("(" + str + ")");
+    //    }
+
+    //2)如何的把JSON格式的对象转换为JSON格式的字符串 ->JSON.stringify -->Ajax的时候在去研究
+    //    var ary = [
+    //        {"name": "李鑫", "age": 28, "score": 98},
+    //        {"name": "张哲", "age": 24, "score": 89}
+    //    ];
+</script>
+</body>
+</html>

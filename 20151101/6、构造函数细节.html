@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script type="text/javascript">
+    function CreateJsPerson(name) {
+        //1)函数中出现的私有变量都是把它看做普通函数执行的时候产生的，和我们的当前的实例(p1/p2)是没有任何的关系的，也就是p1/p2并没有num这个属性，只有this.xxx=xxx这样设置添加的才是我们实例的私有属性
+        var num = 13;
+
+        this.name = name;
+        this.writeJs = function () {
+            console.log("my name is " + this.name + "，i can write javascript 啦~~");
+        };
+
+        //2)不需要写return，浏览器也会把创建的实例进行返回(浏览器默认返回的是一个对象数据类型)，但是如果我自己写了呢?
+        //自己手动返回一个基本数据类型值：对我们创建的实例是没有任何的影响的
+        //return 12;
+        //自己手动返回一个引用数据类型值:会把浏览器默认返回的实例覆盖掉，那么此时我们创建出来的p1/p2就不在是CreateJsPerson这个类的一个实例了
+        //return {};
+    }
+    var p1 = new CreateJsPerson("杨玲玲");
+    //console.log(p1);
+    //console.log(p1.num);//-->undefined
+    var p2 = new CreateJsPerson("董久成");
+
+    //3)如果在创建的时候不需要给形参传递值,后面的小括号可以加也可以不加
+    //new CreateJsPerson();
+    //new CreateJsPerson;
+
+    //4)如何的检测某一个实例是否属于这个类-->instanceof
+    //CreateJsPerson类  p1是这个类的一个实例
+    //    console.log(p1 instanceof CreateJsPerson);//-->true
+    //    console.log(p1 instanceof Array);//-->false
+    //    console.log(p1 instanceof Object);//-->true
+    //所有的对象数据类型({}、[]、/^$/、Date还有我们的实例也是对象数据类型)都是Object这个类的一个实例 -->Object是所有对象数据类型的基类
+    //    console.log([] instanceof Array);//-->true
+    //    console.log([] instanceof Object);//-->true
+    //    var reg = /^$/;
+    //    console.log(reg instanceof RegExp);//如果结果是true，那么说明reg存储的值是一个正则
+
+    //5)hasOwnProperty:检测某一个属性是否为当前的对象的私有属性(不管公有属性是否存在，只要私有中有就返回true，没有就返回false)
+
+    //in:用来检测某一个属性是否属于这个对象 (既可以检测私有的,也可以检测公有的)
+    //p2是CreateJsPerson的一个实例，也是一个对象数据类型，而且里面存储了name、writeJs两个私有的属性
+    //console.log("writeJs" in p2);//-->true 说明是它的一个属性，但是不知道是私有的还是公有的?-->hasOwnProperty
+
+    //console.log(p2.hasOwnProperty("writeJs"));//-->true "writeJs"是p2的一个私有的属性
+
+    //思考题：我们自己实现一个方法 hasPubProperty实现检测一个对象的公有属性
+    //原理：首先需要是当前对象的一个属性(in检测返回true)，并且还不能是私有的属性(hasOwnProperty检测返回false)，这样只能是公有的了
+
+    //检测attr是否为obj的一个公有的属性
+    function hasPubProperty(attr, obj) {
+        return (attr in obj) && (!obj.hasOwnProperty(attr));
+    }
+
+    //isPrototypeOf自己回去查询这个方法的作用和如何使用
+</script>
+</body>
+</html>

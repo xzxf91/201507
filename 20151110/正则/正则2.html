@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>正则的捕获</title>
+</head>
+<body>
+<script type="text/javascript">
+    //exec：实现正则的捕获-->返回的是一个数组
+    //lastIndex：正则每一次捕获的时候，在字符串中开始的索引的位置
+    //1)先匹配，如果不匹配返回null
+    //2)在把匹配的内容捕获到
+    //如果可以匹配多个，但是执行一次exec只能捕获到一个--->正则的懒惰性（每一次捕获的时候，lastIndex都是从0开始的）
+    //"2"和"2014"都符合正则，但是捕获到的内容是按照最长的捕获的--->正则的贪婪性
+    //    var reg = /\d+/;
+    //    var str = "zhufeng2014peixun2015";
+    //    console.log(reg.lastIndex);//-->0
+    //    console.log(reg.exec(str));
+    //    console.log(reg.lastIndex);//-->0
+    //    console.log(reg.exec(str));//-->第二次捕获到的还是"2014"
+    //["2014", index: 7, input: "zhufeng2014peixun2015"]
+    //"2014"：第一次捕获到的内容
+    //index：捕获的开始索引
+    //input：捕获的原始字符串
+
+    //1、解决正则的懒惰性-->在正则的末尾增加全局修饰符g-->每一次捕获完成后，加了全局修饰符g，浏览器都会把正则的lastIndex值进行从新的修改
+    //reg.lastIndex = 11; -->不可以直接的手动修改lastIndex的值
+    //var reg = /\d+/g;
+    //var str = "zhufeng2014peixun2015study2016";
+    //    console.log(reg.exec(str));
+    //    console.log(reg.lastIndex);//-->11
+    //    console.log(reg.exec(str));
+    //    console.log(reg.exec(str));
+    //    console.log(reg.exec(str));
+
+    //    function regExec(reg, str) {
+    //        //为了避免不加g而导致死循环，我们首先做一下处理：没有加g，我们给加一个g
+    //        reg = !reg.global ? eval(reg.toString() + "g") : reg;
+    //        var ary = [];
+    //        var res = reg.exec(str);
+    //        while (res) {
+    //            ary.push(res[0]);
+    //            res = reg.exec(str);
+    //        }
+    //        return ary;
+    //    }
+    //    console.log(regExec(reg, str));
+
+
+    //1-2:exec和match的区别
+    //在字符串中提供了一个叫做match的方法：把字符串所有符合正则的都捕获到(正则一定也要加上g)
+    //console.log(str.match(reg));//-->["2014", "2015", "2016"]
+    //但是match只能捕获大正则匹配的内容，对于分组捕获中，是无法获取分组匹配的内容的
+    //    var str = "zhufeng2015 peixun2014";
+    //    var reg = /[a-z]+(\d+)/g;
+    //    //console.log(reg.exec(str));
+    //    //console.log(reg.exec(str));
+    //    console.log(str.match(reg));
+
+
+    //2、解决正则的贪婪性-->在量词元字符后面加上?就可以了
+    //    var reg = /\d+?/g;
+    //    var str = "zhufeng2014peixun2015study2016";
+    //    console.log(str.match(reg));
+
+
+    //3、分组的第二个作用：分组捕获
+    //?:在分组捕获的时候，我们不想捕获某一个分组中的内容，就可以加?:来只匹配，不捕获了(?=或者?!都可以实现，这两个具有特殊的意义)
+    //    var str = "130430199807131520";
+    //    var reg = /^(\d{2})(\d{4})(\d{4})(\d{2})(\d{2})(?:\d{2})(\d)(?:\d|X)$/;
+    //    var ary = reg.exec(str);
+    //    console.log(ary);//["130430199807131520", "13", "0430", "1998", "07", "13", "2", index: 0, input: "130430199807131520"]
+    //ary[0]:大正则捕获的内容
+    //ary.index:大正则捕获的开始索引
+    //ary.input:捕获的原始字符串
+    //ary[1]:第一个分组捕获的内容
+    //ary[2]:第二个分组捕获的内容
+    //.....
+    //console.log(ary[7]); <==> console.log(RegExp.$7); 都是获取第7个分组捕获的内容
+
+    //4、分组的第三个作用:分组引用
+    //\1或者\2代表的意思是：\1代表和第一个分组出现一模一样的内容；\2和第二个分组出现一模一样的内容;
+    //    var reg = /([0-9]+)([a-z]+)\1\2/;
+    //    console.log(reg.test("2a3b"));//-->false
+    //    console.log(reg.test("2a2a"));//-->true
+
+
+    //?的作用:
+    //1)放在一个特殊或者普通元字符后面,代表让左边的元字符出现0-1次  /\d?/
+    //2)放在一个量词元字符后面，取消正则捕获时候的贪婪性  /\d+?/
+    //3)(?:)在分组捕获的时候，我们不想捕获某一个分组中的内容，就可以加?:来只匹配，不捕获了
+    //4)(?=pattern) 正向预查：一个字符串的后面必须跟着和pattern一样的内容
+    //5)(?!pattern) 复向预查：一个字符串的后面只要跟着和pattern不一样的内容即可
+    //    var reg = /zhufeng(?=2015)/;
+    //    console.log(reg.test("zhufeng2014"));//-->false
+    //    console.log(reg.test("zhufeng2015"));//-->true
+    //
+    //    var reg = /zhufeng(?!2015)/;
+    //    console.log(reg.test("zhufeng2014"));//-->true
+    //    console.log(reg.test("zhufeng2015"));//-->false
+</script>
+</body>
+</html>
